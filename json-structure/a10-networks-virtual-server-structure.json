@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/draft/v0/",
+  "$id": "https://api-evangelist.com/structures/a10-networks/a10-networks-virtual-server-structure.json",
+  "title": "A10 ACOS Virtual Server Structure",
+  "description": "Structural documentation for the ACOS aXAPI v3 virtual server resource.",
+  "type": "object",
+  "name": "virtual-server",
+  "fields": [
+    { "name": "name", "type": "string", "required": true, "description": "VIP name." },
+    { "name": "ip-address", "type": "ipv4", "required": true, "description": "VIP IPv4 address." },
+    { "name": "ipv6-address", "type": "ipv6", "required": false },
+    { "name": "netmask", "type": "string", "required": false },
+    { "name": "ha-group", "type": "integer", "required": false, "range": [1, 31] },
+    { "name": "enable-disable-action", "type": "enum", "required": false, "values": ["enable", "disable", "disable-when-all-ports-down", "disable-when-any-port-down"] },
+    {
+      "name": "port-list",
+      "type": "array",
+      "required": false,
+      "items": {
+        "type": "object",
+        "fields": [
+          { "name": "port-number", "type": "integer", "required": true, "range": [0, 65535] },
+          { "name": "protocol", "type": "enum", "required": true, "values": ["tcp", "udp", "http", "https", "fast-http", "ssl-proxy"] },
+          { "name": "service-group", "type": "string", "required": false }
+        ]
+      }
+    }
+  ]
+}

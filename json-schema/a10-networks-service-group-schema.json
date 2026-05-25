@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.com/schemas/a10-networks/a10-networks-service-group-schema.json",
+  "title": "A10 ACOS SLB Service Group",
+  "description": "Schema for the ACOS aXAPI v3 SLB service group (pool) object. A service group binds a list of real server members to a load-balancing method and optional health check.",
+  "type": "object",
+  "required": ["name", "protocol"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "maxLength": 127
+    },
+    "protocol": {
+      "type": "string",
+      "enum": ["tcp", "udp"]
+    },
+    "lb-method": {
+      "type": "string",
+      "description": "Load-balancing algorithm.",
+      "enum": [
+        "round-robin",
+        "weighted-rr",
+        "least-connection",
+        "weighted-least-connection",
+        "service-least-connection",
+        "service-weighted-least-connection",
+        "fastest-response",
+        "least-request",
+        "round-robin-strict",
+        "src-ip-hash",
+        "src-ip-hash-only",
+        "dst-ip-hash",
+        "dst-ip-hash-only",
+        "per-pkt-round-robin",
+        "odd-even-hash"
+      ],
+      "default": "round-robin"
+    },
+    "health-check": {
+      "type": "string",
+      "description": "Health monitor template applied to all members."
+    },
+    "health-check-disable": {
+      "type": "integer",
+      "enum": [0, 1]
+    },
+    "min-active-member": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Minimum active members before the group is considered up."
+    },
+    "stats-data-action": {
+      "type": "string",
+      "enum": ["stats-data-enable", "stats-data-disable"]
+    },
+    "member-list": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "port"],
+        "properties": {
+          "name": { "type": "string", "description": "Real server name (must already exist)." },
+          "port": { "type": "integer", "minimum": 0, "maximum": 65535 },
+          "member-state": {
+            "type": "string",
+            "enum": ["enable", "disable", "disable-with-health-check"]
+          },
+          "member-priority": { "type": "integer", "minimum": 1, "maximum": 16 }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,68 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: A10 Networks
+providerId: a10-networks
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: false
+tags:
+  - FinOps
+  - FOCUS
+  - Licensing
+  - Capacity FlexPool
+  - Application Delivery
+description: >-
+  FOCUS-aligned FinOps definition for A10 Networks. A10's commercial surface
+  is hybrid: capital expense (physical appliances), term-based subscription
+  (vThunder, FlexPool, Defend DDoS, Threat Control, AI Firewall), and
+  professional services. There is no per-API-call meter on the aXAPI itself.
+  Capacity FlexPool is the primary lever for cloud-style cost allocation: a
+  single capacity pool is consumed by multiple vThunder instances and can be
+  reallocated through Global License Manager.
+sources:
+  - https://www.a10networks.com/products/
+  - https://investors.a10networks.com/
+  - https://www.a10networks.com/products/thunder-adc/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: A10 Networks
+serviceCategory: Networking and Security
+billingModel:
+  pricingCategory: Hybrid (CapEx + Subscription)
+  billingFrequency: Annual (with multi-year options)
+  billingCurrency: USD
+  chargeCategories:
+    - Purchase
+    - Subscription
+    - Support
+    - Professional Services
+    - Adjustment
+  primaryUnit: capacity-unit
+  secondaryUnits:
+    - device
+    - throughput-Gbps
+    - SSL-TPS
+    - mitigation-Mbps
+    - tenant
+allocationDimensions:
+  - dimension: deviceId
+    description: ACOS device serial number or vThunder instance UUID — primary cost-center key for appliance-attached spend.
+  - dimension: partition
+    description: ACOS partition name — supports per-tenant or per-application cost allocation on shared Thunder devices.
+  - dimension: flexpool
+    description: Capacity FlexPool ID — used to allocate pooled capacity across business units consuming vThunder instances.
+  - dimension: productLine
+    description: Thunder ADC vs Thunder TPS vs Thunder CGN vs Thunder CFW vs AI Firewall vs Threat Control.
+optimizationLevers:
+  - Right-size vThunder throughput tiers using FlexPool reallocations rather than re-licensing per VM.
+  - Consolidate ADC + WAF + DDoS + CGN into Thunder CFW where workloads allow, reducing both license and operational cost.
+  - Standardize on the Terraform provider to enforce configuration drift detection and avoid over-provisioned VIPs.
+  - Use TKC's HPA-aware automation to scale ADC config to active pod count, avoiding stranded VIP capacity.
+caveats:
+  - All list prices are quote-based; FOCUS-aligned ChargeAmount fields must be sourced from the customer's signed quote/order.
+  - The aXAPI itself carries no per-call cost; FinOps should track the underlying ACOS device's license entitlement utilization, not API request volume.

@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.com/schemas/a10-networks/a10-networks-server-schema.json",
+  "title": "A10 ACOS Real Server",
+  "description": "Schema for the ACOS aXAPI v3 SLB real (backend) server object.",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique real server name within the partition.",
+      "maxLength": 127
+    },
+    "host": {
+      "type": "string",
+      "description": "IPv4 address or DNS hostname of the real backend."
+    },
+    "server-ipv6-addr": {
+      "type": "string",
+      "format": "ipv6"
+    },
+    "weight": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1000,
+      "description": "Weight used by weighted load-balancing methods.",
+      "default": 1
+    },
+    "conn-limit": {
+      "type": "integer",
+      "description": "Maximum concurrent connections to this server."
+    },
+    "action": {
+      "type": "string",
+      "enum": ["enable", "disable"]
+    },
+    "health-check": {
+      "type": "string",
+      "description": "Health monitor template applied to all ports unless overridden."
+    },
+    "health-check-disable": {
+      "type": "integer",
+      "enum": [0, 1]
+    },
+    "port-list": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["port-number", "protocol"],
+        "properties": {
+          "port-number": { "type": "integer", "minimum": 0, "maximum": 65535 },
+          "protocol": { "type": "string", "enum": ["tcp", "udp"] },
+          "health-check": { "type": "string" },
+          "health-check-disable": { "type": "integer", "enum": [0, 1] },
+          "weight": { "type": "integer", "minimum": 1, "maximum": 1000 },
+          "conn-limit": { "type": "integer" }
+        }
+      }
+    }
+  }
+}

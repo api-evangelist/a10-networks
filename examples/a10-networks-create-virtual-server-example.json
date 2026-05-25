@@ -1,0 +1,50 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://thunder.example.com/axapi/v3/slb/virtual-server",
+    "headers": {
+      "Authorization": "A10 ea697a2bc0eb6ec9a1ec7723a3c9b0",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "virtual-server": {
+        "name": "web-vip-01",
+        "ip-address": "10.0.10.100",
+        "netmask": "255.255.255.0",
+        "ha-group": 1,
+        "enable-disable-action": "enable",
+        "port-list": [
+          {
+            "port-number": 443,
+            "protocol": "https",
+            "service-group": "web-tier-sg",
+            "template-client-ssl": "web-clientssl-template",
+            "template-http": "web-http-template"
+          },
+          {
+            "port-number": 80,
+            "protocol": "http",
+            "service-group": "web-tier-sg"
+          }
+        ]
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "virtual-server": {
+        "name": "web-vip-01",
+        "ip-address": "10.0.10.100",
+        "netmask": "255.255.255.0",
+        "ha-group": 1,
+        "enable-disable-action": "enable",
+        "uuid": "1f9f8c1a-3b2e-4d5a-9c7b-7e6d2a1f5c43",
+        "a10-url": "/axapi/v3/slb/virtual-server/web-vip-01"
+      }
+    }
+  }
+}

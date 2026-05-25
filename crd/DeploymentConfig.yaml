@@ -1,0 +1,54 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: deploymentconfigs.tkc.a10networks.com
+spec:
+  group: tkc.a10networks.com
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                acosResourceConfigSummary:
+                  type: array
+                  x-kubernetes-validations:
+                    - message: Commands cannot be updated. Please delete and create back.
+                      rule: self == oldSelf
+                  items:
+                    type: string
+                  description: ACOS cli commands for creating config on ACOS
+                acosResourceConfigCleanup:
+                  type: array
+                  x-kubernetes-validations:
+                    - message: Commands cannot be updated. Please delete and create back.
+                      rule: self == oldSelf
+                  items:
+                    type: string
+                  description: ACOS cli commands for deleting config from ACOS on resource creation
+                acosResourceConfigRemoval:
+                  type: array
+                  x-kubernetes-validations:
+                    - message: Commands cannot be updated. Please delete and create back.
+                      rule: self == oldSelf
+                  items:
+                    type: string
+                  description: ACOS cli commands for deleting config from ACOS on resource deletion
+                cliDeployTimeout:
+                  type: number
+                  minimum: 3
+                  maximum: 600
+                  description: Timeout period to execute commands in deployment config file
+  scope: Namespaced
+  names:
+    plural: deploymentconfigs
+    singular: deploymentconfig
+    kind: DeploymentConfig
+    shortNames:
+      - a10dc

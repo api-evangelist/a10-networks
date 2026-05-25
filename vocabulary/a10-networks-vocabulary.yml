@@ -1,0 +1,74 @@
+specification: API Commons Vocabulary
+specificationVersion: '0.1'
+provider: A10 Networks
+providerId: a10-networks
+created: '2026-05-25'
+modified: '2026-05-25'
+description: >-
+  Domain vocabulary for the A10 Networks ACOS aXAPI v3 and adjacent product
+  surfaces (Thunder ADC, A10 Defend DDoS portfolio, CGN, CFW, AI Firewall,
+  SSL Insight, Thunder Kubernetes Connector).
+operational:
+  - term: aXAPI
+    definition: A10's RESTful HTTPS API surface for ACOS devices; version 3 is current.
+  - term: ACOS
+    definition: Application Centric Operating System; the software platform that powers Thunder appliances and vThunder.
+  - term: Thunder
+    definition: A10's product family of physical, virtual, and containerized application delivery and security appliances.
+  - term: vThunder
+    definition: Virtual machine and containerized form factor of Thunder.
+  - term: Partition
+    definition: A logical administrative slice of an ACOS device providing isolated configuration scopes.
+  - term: HA Group
+    definition: Active-active or active-standby high-availability grouping identifier.
+  - term: Signature
+    definition: Session token returned by POST /axapi/v3/auth, sent in the `Authorization: A10 <signature>` header.
+slb:
+  - term: SLB
+    definition: Server Load Balancing — A10's L4–L7 load balancing surface.
+  - term: VIP
+    definition: Virtual IP address exposed by a virtual-server, fronting one or more service groups.
+  - term: Virtual Server
+    definition: A10 object that owns a VIP and binds virtual-ports to service groups.
+  - term: Service Group
+    definition: A pool of real servers tied to a load-balancing method and health monitor.
+  - term: Real Server
+    definition: A backend server (host:port) that handles client traffic forwarded by an SLB virtual server.
+  - term: Health Monitor
+    definition: Active probe template (HTTP, HTTPS, TCP, UDP, ICMP, DNS, etc) used to test member reachability.
+  - term: aFleX
+    definition: Tcl-based traffic-manipulation scripting language for L7 policy at the virtual port.
+  - term: GSLB
+    definition: Global Server Load Balancing — DNS-based site selection across geographically distributed sites.
+security:
+  - term: DDoS
+    definition: Distributed Denial of Service; covered by the A10 Defend portfolio (Detector, Mitigator, Orchestrator, Threat Control).
+  - term: SSL Insight
+    definition: A10's TLS/SSL decryption product for security-tool inspection of encrypted traffic.
+  - term: Next-Gen WAF
+    definition: Web Application Firewall capability (incorporating ThreatX) for app and API protection.
+  - term: AI Firewall
+    definition: Guardrails product protecting LLM and AI application traffic from prompt injection, data leakage, and abuse.
+  - term: CGNAT
+    definition: Carrier-Grade NAT; Thunder CGN's IPv4 preservation and IPv6 transition surface.
+  - term: CFW
+    definition: Consolidated firewall (firewall, VPN, CGN, secure web gateway, SSL inspection) on the Thunder CFW platform.
+networking:
+  - term: Lb Method
+    definition: Load-balancing algorithm (round-robin, weighted-rr, least-connection, src-ip-hash, etc).
+  - term: Persistence Template
+    definition: Configuration that ensures a client returns to the same backend (source-IP, cookie, SSL session).
+  - term: Health Check
+    definition: Active monitor instance applied to servers or service groups.
+kubernetes:
+  - term: TKC
+    definition: Thunder Kubernetes Connector — in-cluster controller that drives Thunder ADC from CRDs.
+  - term: A10IPPool
+    definition: TKC CRD declaring an IP address pool used to allocate VIPs.
+  - term: ActiveActiveHADevice
+    definition: TKC CRD describing the upstream Thunder HA cluster TKC manages.
+licensing:
+  - term: GLM
+    definition: Global License Manager — A10's central licensing service.
+  - term: Capacity FlexPool
+    definition: Pooled capacity licensing model that lets customers shift bandwidth/SSL/etc capacity across vThunder instances.

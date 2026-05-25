@@ -1,0 +1,79 @@
+extends:
+  - spectral:oas
+
+rules:
+  a10-info-contact-required:
+    description: A10 Networks APIs must declare a contact block.
+    severity: error
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+
+  a10-info-license-required:
+    description: A10 Networks APIs must declare the A10 EULA license.
+    severity: error
+    given: $.info
+    then:
+      field: license
+      function: truthy
+
+  a10-server-https-only:
+    description: A10 Thunder servers are always HTTPS — http:// servers are not allowed.
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https://'
+
+  a10-axapi-v3-base-path:
+    description: All operational paths must begin with /axapi/v3/.
+    severity: warn
+    given: $.paths[?(@property != '/axapi/v3/auth' && @property != '/axapi/v3/logoff')]~
+    then:
+      function: pattern
+      functionOptions:
+        match: '^/axapi/v3/'
+
+  a10-operation-summary-title-case:
+    description: Operation summaries must use Title Case.
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[A-Z][a-z]+(\s[A-Z][A-Za-z0-9]+)*$'
+
+  a10-operation-id-camel-case:
+    description: operationId values must be lowerCamelCase.
+    severity: error
+    given: $.paths[*][get,post,put,delete,patch].operationId
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-zA-Z0-9]*$'
+
+  a10-signature-auth-required:
+    description: Operations (except sign-on) must require A10Signature.
+    severity: warn
+    given: $.paths[?(@property != '/axapi/v3/auth')][*].security
+    then:
+      function: truthy
+
+  a10-tag-defined:
+    description: Every operation must reference at least one tag.
+    severity: warn
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: tags
+      function: truthy
+
+  a10-schema-kebab-case-fields:
+    description: aXAPI v3 uses kebab-case property names (e.g. virtual-server, ip-address).
+    severity: info
+    given: $.components.schemas[*].properties[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-z0-9-]*$'

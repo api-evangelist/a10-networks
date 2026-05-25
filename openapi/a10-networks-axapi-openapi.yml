@@ -1,0 +1,550 @@
+openapi: 3.1.0
+info:
+  title: A10 Networks ACOS aXAPI v3
+  description: >
+    The ACOS aXAPI is a RESTful HTTPS interface for configuring and operating
+    A10 Networks Thunder Application Delivery Controllers and DDoS protection
+    devices running ACOS (Application Centric Operating System). The aXAPI v3
+    surface is exhaustive (the Terraform provider exposes 3,627 resources):
+    this profile captures the authentication flow and the core Server Load
+    Balancing (SLB) configuration surface — virtual servers, real servers,
+    service groups, and health monitors — which are the most commonly
+    automated objects across ACOS deployments. ACOS 4.0.0 through ACOS 7.0.2
+    are supported.
+  version: '3.0'
+  contact:
+    name: A10 Networks Support
+    url: https://www.a10networks.com/support
+  license:
+    name: A10 Networks End User License Agreement
+    url: https://www.a10networks.com/company/legal/end-user-license-agreement/
+
+servers:
+  - url: https://{thunder-host}
+    description: ACOS Thunder Appliance, vThunder VM, or vThunder Container (customer-hosted)
+    variables:
+      thunder-host:
+        default: thunder.example.com
+        description: Hostname or IP address of the ACOS device or vThunder instance.
+
+security:
+  - A10Signature: []
+
+tags:
+  - name: Authentication
+    description: Session sign-on and sign-off
+  - name: SLB Virtual Server
+    description: Virtual servers (VIPs) that front pools of real servers
+  - name: SLB Server
+    description: Real backend servers
+  - name: SLB Service Group
+    description: Service groups (pools) that bind real servers to a load-balancing method
+  - name: SLB Health Monitor
+    description: Active health probes attached to servers and service groups
+
+paths:
+  /axapi/v3/auth:
+    post:
+      summary: Sign On To ACOS
+      description: >
+        Authenticate with the ACOS device and receive a signature token. The
+        returned signature must be sent in the `Authorization: A10 <signature>`
+        header for every subsequent aXAPI request. Sessions expire after the
+        device-configured idle timeout.
+      operationId: signOnToAcos
+      tags:
+        - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthRequest'
+      responses:
+        '200':
+          description: Authenticated; returned signature must be reused in the Authorization header.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '401':
+          description: Invalid credentials.
+
+  /axapi/v3/logoff:
+    post:
+      summary: Sign Off From ACOS
+      description: Terminate the authenticated session and invalidate the signature.
+      operationId: signOffFromAcos
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: Session terminated.
+
+  /axapi/v3/slb/virtual-server:
+    get:
+      summary: List Virtual Servers
+      description: List all configured SLB virtual servers (VIPs) on the device.
+      operationId: listVirtualServers
+      tags:
+        - SLB Virtual Server
+      responses:
+        '200':
+          description: A list of virtual servers.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  virtual-server-list:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/VirtualServer'
+    post:
+      summary: Create A Virtual Server
+      description: Create a new SLB virtual server (VIP). The virtual server binds an IP address to one or more virtual ports backed by service groups.
+      operationId: createVirtualServer
+      tags:
+        - SLB Virtual Server
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                virtual-server:
+                  $ref: '#/components/schemas/VirtualServer'
+      responses:
+        '200':
+          description: Virtual server created.
+
+  /axapi/v3/slb/virtual-server/{name}:
+    parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get A Virtual Server
+      operationId: getVirtualServer
+      tags:
+        - SLB Virtual Server
+      responses:
+        '200':
+          description: The virtual server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  virtual-server:
+                    $ref: '#/components/schemas/VirtualServer'
+    put:
+      summary: Update A Virtual Server
+      operationId: updateVirtualServer
+      tags:
+        - SLB Virtual Server
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                virtual-server:
+                  $ref: '#/components/schemas/VirtualServer'
+      responses:
+        '200':
+          description: Virtual server updated.
+    delete:
+      summary: Delete A Virtual Server
+      operationId: deleteVirtualServer
+      tags:
+        - SLB Virtual Server
+      responses:
+        '200':
+          description: Virtual server deleted.
+
+  /axapi/v3/slb/server:
+    get:
+      summary: List Real Servers
+      operationId: listServers
+      tags:
+        - SLB Server
+      responses:
+        '200':
+          description: A list of real servers.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  server-list:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Server'
+    post:
+      summary: Create A Real Server
+      operationId: createServer
+      tags:
+        - SLB Server
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                server:
+                  $ref: '#/components/schemas/Server'
+      responses:
+        '200':
+          description: Real server created.
+
+  /axapi/v3/slb/server/{name}:
+    parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get A Real Server
+      operationId: getServer
+      tags:
+        - SLB Server
+      responses:
+        '200':
+          description: The real server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  server:
+                    $ref: '#/components/schemas/Server'
+    put:
+      summary: Update A Real Server
+      operationId: updateServer
+      tags:
+        - SLB Server
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                server:
+                  $ref: '#/components/schemas/Server'
+      responses:
+        '200':
+          description: Real server updated.
+    delete:
+      summary: Delete A Real Server
+      operationId: deleteServer
+      tags:
+        - SLB Server
+      responses:
+        '200':
+          description: Real server deleted.
+
+  /axapi/v3/slb/service-group:
+    get:
+      summary: List Service Groups
+      operationId: listServiceGroups
+      tags:
+        - SLB Service Group
+      responses:
+        '200':
+          description: A list of service groups.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  service-group-list:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ServiceGroup'
+    post:
+      summary: Create A Service Group
+      operationId: createServiceGroup
+      tags:
+        - SLB Service Group
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                service-group:
+                  $ref: '#/components/schemas/ServiceGroup'
+      responses:
+        '200':
+          description: Service group created.
+
+  /axapi/v3/slb/service-group/{name}:
+    parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get A Service Group
+      operationId: getServiceGroup
+      tags:
+        - SLB Service Group
+      responses:
+        '200':
+          description: The service group.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  service-group:
+                    $ref: '#/components/schemas/ServiceGroup'
+    put:
+      summary: Update A Service Group
+      operationId: updateServiceGroup
+      tags:
+        - SLB Service Group
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                service-group:
+                  $ref: '#/components/schemas/ServiceGroup'
+      responses:
+        '200':
+          description: Service group updated.
+    delete:
+      summary: Delete A Service Group
+      operationId: deleteServiceGroup
+      tags:
+        - SLB Service Group
+      responses:
+        '200':
+          description: Service group deleted.
+
+  /axapi/v3/health/monitor:
+    get:
+      summary: List Health Monitors
+      operationId: listHealthMonitors
+      tags:
+        - SLB Health Monitor
+      responses:
+        '200':
+          description: A list of health monitors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  monitor-list:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/HealthMonitor'
+    post:
+      summary: Create A Health Monitor
+      operationId: createHealthMonitor
+      tags:
+        - SLB Health Monitor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                monitor:
+                  $ref: '#/components/schemas/HealthMonitor'
+      responses:
+        '200':
+          description: Health monitor created.
+
+components:
+  securitySchemes:
+    A10Signature:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >
+        Signature returned from POST /axapi/v3/auth, sent as
+        `Authorization: A10 <signature>`.
+  schemas:
+    AuthRequest:
+      type: object
+      required:
+        - credentials
+      properties:
+        credentials:
+          type: object
+          required:
+            - username
+            - password
+          properties:
+            username:
+              type: string
+              description: Local ACOS administrator username.
+            password:
+              type: string
+              format: password
+              description: Local ACOS administrator password.
+    AuthResponse:
+      type: object
+      properties:
+        authresponse:
+          type: object
+          properties:
+            signature:
+              type: string
+              description: Session signature; supply as `Authorization: A10 <signature>` on subsequent calls.
+            description:
+              type: string
+    VirtualServer:
+      type: object
+      required:
+        - name
+        - ip-address
+      properties:
+        name:
+          type: string
+          description: Unique virtual server name.
+        ip-address:
+          type: string
+          format: ipv4
+          description: VIP address.
+        ipv6-address:
+          type: string
+          format: ipv6
+        netmask:
+          type: string
+        port-list:
+          type: array
+          items:
+            $ref: '#/components/schemas/VirtualPort'
+        enable-disable-action:
+          type: string
+          enum: [enable, disable, disable-when-all-ports-down, disable-when-any-port-down]
+        ha-group:
+          type: integer
+    VirtualPort:
+      type: object
+      required:
+        - port-number
+        - protocol
+      properties:
+        port-number:
+          type: integer
+        protocol:
+          type: string
+          enum: [tcp, udp, http, https, fast-http, ssl-proxy, smtp, ftp, ftp-proxy, rtsp, mms, sip, sip-tcp, sips, diameter, dns-tcp, dns-udp, mysql, mssql, radius, smpp-tcp]
+        service-group:
+          type: string
+          description: Name of the service group bound to this virtual port.
+        template-tcp:
+          type: string
+        template-http:
+          type: string
+        template-persist-source-ip:
+          type: string
+    Server:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        host:
+          type: string
+          description: IPv4 address or hostname of the real backend.
+        server-ipv6-addr:
+          type: string
+          format: ipv6
+        port-list:
+          type: array
+          items:
+            type: object
+            properties:
+              port-number:
+                type: integer
+              protocol:
+                type: string
+                enum: [tcp, udp]
+              health-check:
+                type: string
+        weight:
+          type: integer
+          minimum: 1
+          maximum: 1000
+        action:
+          type: string
+          enum: [enable, disable]
+        health-check:
+          type: string
+          description: Health monitor template name.
+    ServiceGroup:
+      type: object
+      required:
+        - name
+        - protocol
+      properties:
+        name:
+          type: string
+        protocol:
+          type: string
+          enum: [tcp, udp]
+        lb-method:
+          type: string
+          enum: [round-robin, weighted-rr, least-connection, weighted-least-connection, service-least-connection, service-weighted-least-connection, fastest-response, least-request, round-robin-strict, src-ip-hash, src-ip-hash-only, dst-ip-hash, dst-ip-hash-only, per-pkt-round-robin, odd-even-hash]
+        health-check:
+          type: string
+        member-list:
+          type: array
+          items:
+            type: object
+            required:
+              - name
+              - port
+            properties:
+              name:
+                type: string
+                description: Real server name (must already exist).
+              port:
+                type: integer
+              member-state:
+                type: string
+                enum: [enable, disable, disable-with-health-check]
+              member-priority:
+                type: integer
+    HealthMonitor:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        retry:
+          type: integer
+          description: Consecutive failures before a server is marked down.
+        consec-pass-value:
+          type: integer
+          description: Consecutive successes before a server is marked up.
+        interval:
+          type: integer
+          description: Probe interval in seconds.
+        timeout:
+          type: integer
+        method:
+          type: object
+          description: One-of probe-type discriminator (http, https, tcp, udp, icmp, dns, ftp, smtp, snmp, radius, etc).

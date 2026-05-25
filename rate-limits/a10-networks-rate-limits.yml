@@ -1,0 +1,47 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: A10 Networks
+providerId: a10-networks
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: false
+tags:
+  - Rate Limiting
+  - Session
+  - Idle Timeout
+description: >-
+  The ACOS aXAPI is a customer-hosted, on-device control-plane interface — A10
+  does not publish a quota or per-second request limit. Practical limits are
+  governed by (1) session sign-on / sign-off, (2) the device's configured
+  admin session idle timeout, and (3) per-device CPU / management-plane
+  capacity. A10 recommends batching configuration objects (e.g., a single
+  POST containing a virtual-server with its port-list) rather than issuing
+  high-frequency single-field updates.
+sources:
+  - https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html
+  - https://documentation.a10networks.com/ACOS-Docs/axapi/608/index.html
+algorithm: session-based
+authentication:
+  signOn: POST /axapi/v3/auth
+  signOff: POST /axapi/v3/logoff
+  header: 'Authorization: A10 <signature>'
+sessionLimits:
+  - dimension: idle-timeout
+    description: >-
+      Sessions invalidate after the device-configured admin idle timeout
+      (default 10 minutes on most ACOS releases; configurable per-admin).
+    defaultMinutes: 10
+  - dimension: concurrent-admin-sessions
+    description: >-
+      The total number of concurrent admin sessions per device is governed
+      by ACOS admin-session limits configured on the device.
+operationalGuidance:
+  - Reuse a single signature for the lifetime of a configuration burst rather than authenticating per request.
+  - Batch related objects (e.g., service-group with member-list inline) to minimize round trips.
+  - For mass configuration, prefer the Terraform provider or Ansible collection which manage retries and ordering.
+  - For Kubernetes-driven workloads, route configuration through TKC rather than direct aXAPI writes from application pods.
+responseCodes:
+  unauthorized: 401
+  conflict: 409
+  serverError: 500

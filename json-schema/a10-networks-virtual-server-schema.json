@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.com/schemas/a10-networks/a10-networks-virtual-server-schema.json",
+  "title": "A10 ACOS Virtual Server",
+  "description": "Schema for the ACOS aXAPI v3 SLB virtual server (VIP) object. A virtual server binds an IP address to one or more virtual ports, each backed by a service group of real servers.",
+  "type": "object",
+  "required": ["name", "ip-address"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique virtual server name within the partition.",
+      "maxLength": 127
+    },
+    "ip-address": {
+      "type": "string",
+      "format": "ipv4",
+      "description": "IPv4 VIP address."
+    },
+    "ipv6-address": {
+      "type": "string",
+      "format": "ipv6",
+      "description": "IPv6 VIP address."
+    },
+    "netmask": {
+      "type": "string",
+      "description": "Subnet mask in dotted decimal."
+    },
+    "ha-group": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 31,
+      "description": "ACOS High-Availability group ID."
+    },
+    "enable-disable-action": {
+      "type": "string",
+      "enum": ["enable", "disable", "disable-when-all-ports-down", "disable-when-any-port-down"],
+      "description": "Behavior of the virtual server when ports go down."
+    },
+    "port-list": {
+      "type": "array",
+      "description": "Virtual ports exposed by this VIP.",
+      "items": { "$ref": "#/$defs/VirtualPort" }
+    }
+  },
+  "$defs": {
+    "VirtualPort": {
+      "type": "object",
+      "required": ["port-number", "protocol"],
+      "properties": {
+        "port-number": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 65535
+        },
+        "protocol": {
+          "type": "string",
+          "enum": ["tcp", "udp", "http", "https", "fast-http", "ssl-proxy", "smtp", "ftp", "ftp-proxy", "rtsp", "mms", "sip", "sip-tcp", "sips", "diameter", "dns-tcp", "dns-udp", "mysql", "mssql", "radius", "smpp-tcp"]
+        },
+        "service-group": {
+          "type": "string",
+          "description": "Name of the service group bound to this virtual port."
+        },
+        "template-tcp": { "type": "string" },
+        "template-http": { "type": "string" },
+        "template-client-ssl": { "type": "string" },
+        "template-server-ssl": { "type": "string" },
+        "template-persist-source-ip": { "type": "string" },
+        "template-persist-cookie": { "type": "string" },
+        "aflex-scripts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "aflex": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

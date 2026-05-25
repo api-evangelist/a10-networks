@@ -1,0 +1,74 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: A10 ACOS aXAPI v3 — SLB Real Servers
+  description: >-
+    A10 ACOS aXAPI v3 — Server Load Balancing real (backend) servers. CRUD
+    operations on /axapi/v3/slb/server.
+  tags:
+    - A10 Networks
+    - ACOS
+    - SLB
+    - Load Balancing
+    - Real Server
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+  - namespace: env
+    keys:
+      A10_THUNDER_HOST: A10_THUNDER_HOST
+      A10_SIGNATURE: A10_SIGNATURE
+capability:
+  consumes:
+    - type: http
+      namespace: slb-servers
+      baseUri: https://${A10_THUNDER_HOST}
+      description: ACOS aXAPI v3 — SLB real server CRUD.
+      resources:
+        - name: server-collection
+          path: /axapi/v3/slb/server
+          operations:
+            - name: listServers
+              method: GET
+              description: List all real backend servers.
+              outputRawFormat: json
+            - name: createServer
+              method: POST
+              description: Create a real backend server.
+              inputParameters:
+                - name: body
+                  in: body
+                  type: object
+                  required: true
+        - name: server-item
+          path: /axapi/v3/slb/server/{name}
+          operations:
+            - name: getServer
+              method: GET
+              inputParameters:
+                - name: name
+                  in: path
+                  type: string
+                  required: true
+            - name: updateServer
+              method: PUT
+              inputParameters:
+                - name: name
+                  in: path
+                  type: string
+                  required: true
+                - name: body
+                  in: body
+                  type: object
+                  required: true
+            - name: deleteServer
+              method: DELETE
+              inputParameters:
+                - name: name
+                  in: path
+                  type: string
+                  required: true
+      authentication:
+        type: apikey
+        in: header
+        name: Authorization
+        valueTemplate: 'A10 ${A10_SIGNATURE}'

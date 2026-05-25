@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://thunder.example.com/axapi/v3/auth",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "credentials": {
+        "username": "admin",
+        "password": "a10"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "authresponse": {
+        "signature": "ea697a2bc0eb6ec9a1ec7723a3c9b0",
+        "description": "the signature should be set in Authorization header"
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://schema.org/",
+    "a10": "https://www.a10networks.com/schemas/axapi/v3/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "VirtualServer": {
+      "@id": "a10:VirtualServer",
+      "@context": {
+        "name": { "@id": "a10:VirtualServer/name", "@type": "xsd:string" },
+        "ip-address": { "@id": "a10:VirtualServer/ipAddress", "@type": "xsd:string" },
+        "ipv6-address": { "@id": "a10:VirtualServer/ipv6Address", "@type": "xsd:string" },
+        "netmask": { "@id": "a10:VirtualServer/netmask", "@type": "xsd:string" },
+        "ha-group": { "@id": "a10:VirtualServer/haGroup", "@type": "xsd:integer" },
+        "enable-disable-action": { "@id": "a10:VirtualServer/enableDisableAction", "@type": "xsd:string" },
+        "port-list": { "@id": "a10:VirtualServer/portList", "@container": "@list" }
+      }
+    },
+
+    "VirtualPort": {
+      "@id": "a10:VirtualPort",
+      "@context": {
+        "port-number": { "@id": "a10:VirtualPort/portNumber", "@type": "xsd:integer" },
+        "protocol": { "@id": "a10:VirtualPort/protocol", "@type": "xsd:string" },
+        "service-group": { "@id": "a10:VirtualPort/serviceGroup", "@type": "xsd:string" }
+      }
+    },
+
+    "Server": {
+      "@id": "a10:Server",
+      "@context": {
+        "name": { "@id": "a10:Server/name", "@type": "xsd:string" },
+        "host": { "@id": "a10:Server/host", "@type": "xsd:string" },
+        "weight": { "@id": "a10:Server/weight", "@type": "xsd:integer" },
+        "action": { "@id": "a10:Server/action", "@type": "xsd:string" },
+        "health-check": { "@id": "a10:Server/healthCheck", "@type": "xsd:string" },
+        "port-list": { "@id": "a10:Server/portList", "@container": "@list" }
+      }
+    },
+
+    "ServiceGroup": {
+      "@id": "a10:ServiceGroup",
+      "@context": {
+        "name": { "@id": "a10:ServiceGroup/name", "@type": "xsd:string" },
+        "protocol": { "@id": "a10:ServiceGroup/protocol", "@type": "xsd:string" },
+        "lb-method": { "@id": "a10:ServiceGroup/lbMethod", "@type": "xsd:string" },
+        "health-check": { "@id": "a10:ServiceGroup/healthCheck", "@type": "xsd:string" },
+        "member-list": { "@id": "a10:ServiceGroup/memberList", "@container": "@list" }
+      }
+    },
+
+    "HealthMonitor": {
+      "@id": "a10:HealthMonitor",
+      "@context": {
+        "name": { "@id": "a10:HealthMonitor/name", "@type": "xsd:string" },
+        "interval": { "@id": "a10:HealthMonitor/interval", "@type": "xsd:integer" },
+        "timeout": { "@id": "a10:HealthMonitor/timeout", "@type": "xsd:integer" },
+        "retry": { "@id": "a10:HealthMonitor/retry", "@type": "xsd:integer" }
+      }
+    }
+  }
+}

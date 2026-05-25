@@ -1,0 +1,127 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: A10 Networks
+providerId: a10-networks
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: false
+tags:
+  - Application Delivery
+  - DDoS
+  - Load Balancing
+  - Licensing
+  - Capacity FlexPool
+description: >-
+  A10 Networks does not publish list prices for its APIs or appliances. The
+  aXAPI itself is included with every ACOS-licensed device at no additional
+  per-call charge. Commercial entitlement is purchased through hardware
+  appliances (Thunder ADC / TPS / CGN / CFW SKUs), vThunder VM and container
+  licenses, and the Capacity FlexPool — a pooled, term-based licensing model
+  that lets organizations move capacity (bandwidth, SSL TPS, DDoS mitigation
+  capacity, etc.) across vThunder instances. The A10 Defend Threat Control
+  service is a SaaS subscription. All pricing is quote-based via direct sales
+  and authorized resellers.
+sources:
+  - https://www.a10networks.com/products/
+  - https://www.a10networks.com/products/thunder-adc/
+  - https://www.a10networks.com/products/defend-ddos-mitigator/
+  - https://www.a10networks.com/contact-us/
+  - https://documentation.a10networks.com
+plans:
+  - id: a10-thunder-adc-appliance
+    name: Thunder ADC — Physical Appliance
+    type: capex
+    description: >-
+      Physical Thunder ADC appliance (1U, 2U, or 5U chassis) with perpetual
+      software entitlement. Pricing scales with throughput tier, SSL TPS, and
+      port density. Sold through direct sales and authorized resellers.
+    entries:
+      - label: Appliance + perpetual license
+        name: appliance
+        type: one-time
+        metric: device
+        unit: 1
+        price: contact-sales
+        userMultiplied: false
+      - label: Annual support & software updates
+        name: support
+        type: subscription
+        metric: device
+        timeFrame: year
+        price: contact-sales
+        userMultiplied: false
+  - id: a10-vthunder-byol
+    name: vThunder — Bring-Your-Own-License
+    type: subscription
+    description: >-
+      Virtual machine or container form factor of Thunder. Customer brings a
+      term-based license (1, 3, or 5 years) keyed to throughput, SSL TPS, or
+      Capacity FlexPool entitlement and deploys on AWS, Azure, GCP, OCI,
+      OpenStack, KVM, VMware, or Kubernetes.
+    entries:
+      - label: vThunder ADC term license
+        name: term-license
+        type: subscription
+        metric: throughput-tier
+        timeFrame: year
+        price: contact-sales
+        userMultiplied: false
+  - id: a10-capacity-flexpool
+    name: A10 Capacity FlexPool
+    type: subscription
+    description: >-
+      Pooled, term-based licensing model. Customers buy a pool of capacity
+      (e.g., aggregate Gbps, SSL TPS, DDoS mitigation Mbps) once and shift
+      allocations across vThunder instances on demand via Global License
+      Manager.
+    entries:
+      - label: FlexPool capacity allocation
+        name: capacity
+        type: subscription
+        metric: capacity-unit
+        timeFrame: year
+        price: contact-sales
+        userMultiplied: false
+  - id: a10-defend-ddos-mitigator
+    name: A10 Defend DDoS Mitigator
+    type: subscription
+    description: >-
+      Thunder TPS hardware appliance or vThunder TPS instance for inline DDoS
+      mitigation. Sized by mitigation throughput (Mbps to multi-hundred Gbps).
+    entries:
+      - label: Mitigator license
+        name: mitigator
+        type: subscription
+        metric: mitigation-bandwidth
+        timeFrame: year
+        price: contact-sales
+        userMultiplied: false
+  - id: a10-defend-threat-control
+    name: A10 Defend Threat Control (SaaS)
+    type: subscription
+    description: >-
+      SaaS feed and dashboard delivering proactive DDoS attack intelligence,
+      weaponized-source telemetry, and reputation lists.
+    entries:
+      - label: Threat Control subscription
+        name: threat-control
+        type: subscription
+        metric: tenant
+        timeFrame: year
+        price: contact-sales
+        userMultiplied: false
+  - id: a10-ai-firewall
+    name: A10 AI Firewall
+    type: subscription
+    description: >-
+      Guardrails for protecting AI and LLM applications from prompt injection,
+      data leakage, jailbreaks, and abuse.
+    entries:
+      - label: AI Firewall subscription
+        name: ai-firewall
+        type: subscription
+        metric: throughput-tier
+        timeFrame: year
+        price: contact-sales
+        userMultiplied: false
