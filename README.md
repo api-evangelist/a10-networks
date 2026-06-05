@@ -1,14 +1,32 @@
 # A10 Networks (a10-networks)
 
-A10 Networks (NYSE: ATEN) is a San Jose, California–headquartered application delivery and cybersecurity company founded in 2004 by Lee Chen. A10 builds the ACOS (Application Centric Operating System) software platform that powers its Thunder family of physical appliances, virtual machines (vThunder), and containerized form factors across hyperscalers and private clouds. The portfolio spans Thunder ADC (L4–L7 load balancing and GSLB), the A10 Defend DDoS portfolio (Detector, Mitigator, Orchestrator, Threat Control SaaS), Thunder CGN (Carrier-Grade NAT and IPv6 transition), Thunder CFW (consolidated firewall, VPN, CGN, secure web gateway), SSL Insight for encrypted-traffic decryption, the A10 Defend Next-Gen WAF (incorporating ThreatX), and the A10 AI Firewall for protecting LLM/AI application traffic. Every ACOS device exposes the **aXAPI v3** — a RESTful HTTPS interface that is the primary configuration and operational control plane, wrapped by official Terraform, Ansible, Python, and Kubernetes Connector tooling. A10 reported record annual revenue of $290.6M for FY2025 (up 11.0% YoY) under CEO Dhrupad Trivedi, serving 7,700+ customers across 117 countries.
+A10 Networks (NYSE: ATEN) is a San Jose, California–headquartered application delivery and cybersecurity company founded in 2004 by Lee Chen. A10 builds the ACOS (Application Centric Operating System) software platform that powers its Thunder family of physical appliances, virtual machines (vThunder), and containerized form factors across hyperscalers and private clouds. The product line spans the Thunder ADC (Application Delivery Controller for L4–L7 server load balancing and GSLB), the Thunder TPS / A10 Defend portfolio (DDoS detection, mitigation, orchestration, and Threat Control SaaS) protecting service-provider and enterprise networks from volumetric and application-layer attacks, Thunder CGN (Carrier-Grade NAT and IPv4/IPv6 transition), Thunder CFW (consolidated firewall, VPN, CGN, and secure web gateway), SSL Insight for encrypted traffic decryption, the A10 Defend Next-Gen WAF (incorporating ThreatX), and the A10 AI Firewall for protecting LLM and AI application traffic. Every ACOS device exposes the aXAPI v3 — a RESTful HTTPS interface that is the primary configuration and operational control plane for the platform, supporting ACOS 4.0.0 through 7.0.2. The aXAPI surface is exhaustive (the official Terraform provider exposes 3,627 resources) and is wrapped by official Ansible collections (a10-acos-axapi, a10-acos-cli), a Python client (acos-client), the Thunder Kubernetes Connector (TKC, with 24 CRDs for pod-driven VIP automation), and integrations for OpenStack Octavia, Neutron LBaaS, AWS CloudFormation, Azure ARM, VMware vSphere, Helm, and Prometheus. A10 reported record annual revenue of $290.6M in FY2025 (up 11.0% year over year) under CEO Dhrupad Trivedi, serving 7,700+ customers across 117 countries.
 
-**URL:** [Visit APIs.json](https://raw.githubusercontent.com/api-evangelist/a10-networks/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/a10-networks/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/a10-networks/refs/heads/main/apis.yml)
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Scope
+
+- **Type:** Index
+- **Position:** Provider
+- **Access:** 3rd-Party
 
 ## Tags
 
-- Application Delivery, Load Balancing, DDoS Protection, Application Delivery Controller, Network Security, Web Application Firewall, SSL Decryption, CGNAT, Cybersecurity, Infrastructure, Kubernetes, Terraform, Ansible, REST API, Networking
+- Application Delivery
+- Load Balancing
+- DDoS Protection
+- Application Delivery Controller
+- Network Security
+- Web Application Firewall
+- SSL Decryption
+- CGNAT
+- Cybersecurity
+- Infrastructure
+- Kubernetes
+- Terraform
+- Ansible
+- REST API
+- Networking
 
 ## Timestamps
 
@@ -18,66 +36,83 @@ A10 Networks (NYSE: ATEN) is a San Jose, California–headquartered application 
 ## APIs
 
 ### A10 Networks ACOS aXAPI v3
-The RESTful HTTPS configuration and operational control plane for every A10 Thunder device — physical, virtual (vThunder), or containerized. Covers the full ACOS object model: SLB (virtual servers, real servers, service groups, health monitors, SSL templates, aFleX), GSLB, DDoS protection, CGNAT pools, system, networking, routing, partitions, and operational/statistics resources. Session-based authentication via `POST /axapi/v3/auth` returning a signature for the `Authorization: A10 <signature>` header. The aXAPI is the substrate under the Terraform provider (3,627 resources), the Ansible collections, the Kubernetes Connector, and the Python `acos-client`.
 
-**Human URL:** [https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html](https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html)
+The ACOS aXAPI v3 is the RESTful HTTPS configuration and operational control plane for every A10 Thunder device — physical, virtual (vThunder), or containerized. It covers the full ACOS object model: Server Load Balancing (virtual servers, real servers, service groups, health monitors, SSL templates, aFleX scripts), GSLB, DDoS protection objects, CGNAT pools, system configuration, networking, routing, partitions, and operational/statistics resources. Authentication is session-based (POST /axapi/v3/auth returns a signature for the `Authorization: A10 <signature>` header). The aXAPI is the substrate under the Terraform provider, the Ansible collections, the Kubernetes Connector, and the Python acos-client.
 
-- [Documentation — ACOS 7.0.2 aXAPI v3](https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html)
-- [Documentation — ACOS 6.0.8 aXAPI v3](https://documentation.a10networks.com/ACOS-Docs/axapi/608/index.html)
-- [Blog — aXAPI REST-Based API Integration](https://www.a10networks.com/blog/axapi-rest-based-application-programming-interface-integration/)
-- [OpenAPI](openapi/a10-networks-axapi-openapi.yml)
-- [JSON Schema — Virtual Server](json-schema/a10-networks-virtual-server-schema.json)
-- [JSON Schema — Server](json-schema/a10-networks-server-schema.json)
-- [JSON Schema — Service Group](json-schema/a10-networks-service-group-schema.json)
-- [JSON-LD Context](json-ld/a10-networks-context.jsonld)
+- **Human URL:** [https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html](https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html)
+
+#### Tags
+
+- Application Delivery
+- Load Balancing
+- DDoS Protection
+- SLB
+- REST API
+- ACOS
+
+#### Properties
+
+- [Documentation](https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html)
+- [Documentation](https://documentation.a10networks.com/ACOS-Docs/axapi/608/index.html)
+- [Blog](https://www.a10networks.com/blog/axapi-rest-based-application-programming-interface-integration/)
+- [OpenAPI](openapi/a10-networks-axapi-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [JSON Schema](json-schema/a10-networks-virtual-server-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/a10-networks-server-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/a10-networks-service-group-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON-LD](json-ld/a10-networks-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
 - [Spectral Ruleset](rules/a10-networks-rules.yml)
-- [Naftiko Capability — Virtual Servers](capabilities/slb-virtual-servers.yaml)
-- [Naftiko Capability — Servers](capabilities/slb-servers.yaml)
-- [Naftiko Capability — Service Groups](capabilities/slb-service-groups.yaml)
-- [Naftiko Capability — Health Monitors](capabilities/slb-health-monitors.yaml)
 
 ### A10 Thunder Kubernetes Connector (TKC)
-Runs inside Kubernetes and configures upstream Thunder ADC objects automatically as pods are created and scaled. Defines 24 CRDs covering the SLB and template object model — VirtualServer, VirtualPort, ServiceGroup, HealthMonitor, NatPool, A10IPPool, ActiveActiveHADevice, ClientSsl/ServerSsl, TCP/UDP/HTTP/HTTPS/cipher/persistence/policy templates — exposing the full L4–L7 ADC surface as native Kubernetes resources.
 
-**Human URL:** [https://github.com/a10networks/tkc-doc](https://github.com/a10networks/tkc-doc)
+The Thunder Kubernetes Connector (TKC) runs inside Kubernetes and configures upstream Thunder ADC objects automatically as pods are created and scaled. It defines 24 CRDs covering VirtualServer, VirtualPort, ServiceGroup, HealthMonitor, NatPool, A10IPPool, ActiveActiveHADevice, ClientSsl/ServerSsl templates, TCP/UDP/HTTP/ HTTPS templates, persistence templates, policy templates, and cipher templates — exposing the full L4–L7 ADC surface as native Kubernetes resources.
+
+- **Human URL:** [https://github.com/a10networks/tkc-doc](https://github.com/a10networks/tkc-doc)
+
+#### Tags
+
+- Kubernetes
+- CRD
+- Cloud Native
+- Application Delivery
+- Service Mesh
+
+#### Properties
 
 - [Documentation](https://github.com/a10networks/tkc-doc)
-- [CRDs (24 files)](crd/)
+- [Source Code](https://github.com/a10networks/tkc-doc)
+- [Kubernetes C R D](crd/)
 
-## SDKs, Tools, and Integrations
+## Common Properties
 
-| Project | Purpose | Language | License |
-|---|---|---|---|
-| [terraform-provider-thunder](https://github.com/a10networks/terraform-provider-thunder) | Official Terraform provider — 3,627 ACOS resources | Go | BSD-2-Clause |
-| [a10-acos-axapi](https://github.com/a10networks/a10-acos-axapi) | Official Ansible collection for the aXAPI v3 surface | Python | Apache-2.0 |
-| [a10-acos-cli](https://github.com/a10networks/a10-acos-cli) | Ansible collection for CLI-based ACOS configuration | Python | Apache-2.0 |
-| [acos-client](https://github.com/a10networks/acos-client) | Official Python client for the aXAPI v3 (ACOS 4.0.0+) | Python | Apache-2.0 |
-| [tkc-doc](https://github.com/a10networks/tkc-doc) | Thunder Kubernetes Connector docs and CRDs | YAML | Apache-2.0 |
-| [a10-octavia](https://github.com/a10networks/a10-octavia) | OpenStack Octavia provider driver | Python | Apache-2.0 |
-| [a10-neutron-lbaas](https://github.com/a10networks/a10-neutron-lbaas) | OpenStack Neutron LBaaS driver | Python | Apache-2.0 |
-| [AWS-CFT](https://github.com/a10networks/AWS-CFT) | AWS CloudFormation templates for vThunder | Python | Apache-2.0 |
-| [A10-azure-arm-templates](https://github.com/a10networks/A10-azure-arm-templates) | Azure ARM templates for vThunder | PowerShell | Apache-2.0 |
-| [a10-vmware-templates](https://github.com/a10networks/a10-vmware-templates) | VMware vSphere deployment templates | Python | Apache-2.0 |
-| [PrometheusExporter](https://github.com/a10networks/PrometheusExporter) | Custom Prometheus exporter for vThunder | Python | Apache-2.0 |
-| [thunder-observability-agent](https://github.com/a10networks/thunder-observability-agent) | Observability agent | — | Apache-2.0 |
-| [aflex-collection](https://github.com/a10networks/aflex-collection) | aFleX (Tcl) scripts for L7 traffic manipulation | Tcl | Apache-2.0 |
-| [axapi-collection](https://github.com/a10networks/axapi-collection) | Sample aXAPI scripts and integrations | Python | Apache-2.0 |
-| [glm-client](https://github.com/a10networks/glm-client) | Global License Manager licensing scripts | Python | Apache-2.0 |
-| [a10-nlbaas2oct](https://github.com/a10networks/a10-nlbaas2oct) | Migrate Thunder from Neutron LBaaS to Octavia | Python | Apache-2.0 |
-| [a10-saltstack](https://github.com/a10networks/a10-saltstack) | SaltStack modules for Thunder | Python | Apache-2.0 |
-| [acos-prometheus-exporter-helm-chart](https://github.com/a10networks/acos-prometheus-exporter-helm-chart) | Helm chart for the ACOS Prometheus exporter | HTML | Apache-2.0 |
+- [Website](https://www.a10networks.com)
+- [Products](https://www.a10networks.com/products/)
+- [Documentation](https://documentation.a10networks.com)
+- [a X A P I  Documentation](https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html)
+- [Source Code](https://github.com/a10networks)
+- [Terraform Provider](https://github.com/a10networks/terraform-provider-thunder)
+- [Ansible Collection](https://github.com/a10networks/a10-acos-axapi)
+- [Python Client](https://github.com/a10networks/acos-client)
+- [Kubernetes Connector](https://github.com/a10networks/tkc-doc)
+- [Open Stack Octavia](https://github.com/a10networks/a10-octavia)
+- [Prometheus Exporter](https://github.com/a10networks/PrometheusExporter)
+- [A W S Cloud Formation](https://github.com/a10networks/AWS-CFT)
+- [Azure A R M Templates](https://github.com/a10networks/A10-azure-arm-templates)
+- [V Mware Templates](https://github.com/a10networks/a10-vmware-templates)
+- [a Fle X Scripts](https://github.com/a10networks/aflex-collection)
+- [Helm Chart](https://github.com/a10networks/acos-prometheus-exporter-helm-chart)
+- [Support](https://support.a10networks.com)
+- [Community](https://glm.a10networks.com)
+- [Blog](https://www.a10networks.com/blog/)
+- [Newsroom](https://www.a10networks.com/news/)
+- [Investor Relations](https://investors.a10networks.com)
+- [Careers](https://www.a10networks.com/company/careers/)
+- [Contact](https://www.a10networks.com/contact-us/)
+- [Twitter](https://twitter.com/A10Networks)
+- [LinkedIn](https://www.linkedin.com/company/a10networks)
+- [YouTube](https://www.youtube.com/user/a10networks)
+- [Git Hub](https://github.com/a10networks)
 
-## Commercial Surface
+## Maintainers
 
-- [Plans & Pricing](plans/a10-networks-plans-pricing.yml) — API Commons Plans 0.1
-- [Rate Limits](rate-limits/a10-networks-rate-limits.yml) — API Commons Rate Limits 0.1
-- [FinOps](finops/a10-networks-finops.yml) — FOCUS-aligned FinOps definition
-
-## Vocabulary
-
-- [Vocabulary](vocabulary/a10-networks-vocabulary.yml)
-- [JSON Structure — Virtual Server](json-structure/a10-networks-virtual-server-structure.json)
-
-## Maintainer
-
-Kin Lane — kin@apievangelist.com
+**FN:** Kin Lane
+**Email:** kin@apievangelist.com

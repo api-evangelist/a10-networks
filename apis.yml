@@ -1,31 +1,22 @@
 aid: a10-networks
 name: A10 Networks
 description: >-
-  A10 Networks (NYSE: ATEN) is a San Jose, California–headquartered application
-  delivery and cybersecurity company founded in 2004 by Lee Chen. A10 builds
-  the ACOS (Application Centric Operating System) software platform that
-  powers its Thunder family of physical appliances, virtual machines
-  (vThunder), and containerized form factors across hyperscalers and private
-  clouds. The product line spans the Thunder ADC (Application Delivery
-  Controller for L4–L7 server load balancing and GSLB), the Thunder TPS /
-  A10 Defend portfolio (DDoS detection, mitigation, orchestration, and
-  Threat Control SaaS) protecting service-provider and enterprise networks
-  from volumetric and application-layer attacks, Thunder CGN (Carrier-Grade
-  NAT and IPv4/IPv6 transition), Thunder CFW (consolidated firewall, VPN,
-  CGN, and secure web gateway), SSL Insight for encrypted traffic decryption,
-  the A10 Defend Next-Gen WAF (incorporating ThreatX), and the A10 AI
-  Firewall for protecting LLM and AI application traffic. Every ACOS device
-  exposes the aXAPI v3 — a RESTful HTTPS interface that is the primary
-  configuration and operational control plane for the platform, supporting
-  ACOS 4.0.0 through 7.0.2. The aXAPI surface is exhaustive (the official
-  Terraform provider exposes 3,627 resources) and is wrapped by official
-  Ansible collections (a10-acos-axapi, a10-acos-cli), a Python client
-  (acos-client), the Thunder Kubernetes Connector (TKC, with 24 CRDs for
-  pod-driven VIP automation), and integrations for OpenStack Octavia,
-  Neutron LBaaS, AWS CloudFormation, Azure ARM, VMware vSphere, Helm, and
-  Prometheus. A10 reported record annual revenue of $290.6M in FY2025
-  (up 11.0% year over year) under CEO Dhrupad Trivedi, serving 7,700+
-  customers across 117 countries.
+  A10 Networks (NYSE: ATEN) is a San Jose, California–headquartered application delivery and cybersecurity company
+  founded in 2004 by Lee Chen. A10 builds the ACOS (Application Centric Operating System) software platform that powers
+  its Thunder family of physical appliances, virtual machines (vThunder), and containerized form factors across
+  hyperscalers and private clouds. The product line spans the Thunder ADC (Application Delivery Controller for L4–L7
+  server load balancing and GSLB), the Thunder TPS / A10 Defend portfolio (DDoS detection, mitigation, orchestration,
+  and Threat Control SaaS) protecting service-provider and enterprise networks from volumetric and application-layer
+  attacks, Thunder CGN (Carrier-Grade NAT and IPv4/IPv6 transition), Thunder CFW (consolidated firewall, VPN, CGN, and
+  secure web gateway), SSL Insight for encrypted traffic decryption, the A10 Defend Next-Gen WAF (incorporating
+  ThreatX), and the A10 AI Firewall for protecting LLM and AI application traffic. Every ACOS device exposes the aXAPI
+  v3 — a RESTful HTTPS interface that is the primary configuration and operational control plane for the platform,
+  supporting ACOS 4.0.0 through 7.0.2. The aXAPI surface is exhaustive (the official Terraform provider exposes 3,627
+  resources) and is wrapped by official Ansible collections (a10-acos-axapi, a10-acos-cli), a Python client
+  (acos-client), the Thunder Kubernetes Connector (TKC, with 24 CRDs for pod-driven VIP automation), and integrations
+  for OpenStack Octavia, Neutron LBaaS, AWS CloudFormation, Azure ARM, VMware vSphere, Helm, and Prometheus. A10
+  reported record annual revenue of $290.6M in FY2025 (up 11.0% year over year) under CEO Dhrupad Trivedi, serving
+  7,700+ customers across 117 countries.
 type: Index
 position: Provider
 access: 3rd-Party
@@ -62,16 +53,12 @@ apis:
       - ACOS
     humanURL: https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html
     description: >-
-      The ACOS aXAPI v3 is the RESTful HTTPS configuration and operational
-      control plane for every A10 Thunder device — physical, virtual
-      (vThunder), or containerized. It covers the full ACOS object model:
-      Server Load Balancing (virtual servers, real servers, service groups,
-      health monitors, SSL templates, aFleX scripts), GSLB, DDoS protection
-      objects, CGNAT pools, system configuration, networking, routing,
-      partitions, and operational/statistics resources. Authentication is
-      session-based (POST /axapi/v3/auth returns a signature for the
-      `Authorization: A10 <signature>` header). The aXAPI is the substrate
-      under the Terraform provider, the Ansible collections, the
+      The ACOS aXAPI v3 is the RESTful HTTPS configuration and operational control plane for every A10 Thunder device —
+      physical, virtual (vThunder), or containerized. It covers the full ACOS object model: Server Load Balancing
+      (virtual servers, real servers, service groups, health monitors, SSL templates, aFleX scripts), GSLB, DDoS
+      protection objects, CGNAT pools, system configuration, networking, routing, partitions, and operational/statistics
+      resources. Authentication is session-based (POST /axapi/v3/auth returns a signature for the `Authorization: A10
+      <signature>` header). The aXAPI is the substrate under the Terraform provider, the Ansible collections, the
       Kubernetes Connector, and the Python acos-client.
     properties:
       - url: https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html
@@ -90,14 +77,6 @@ apis:
         type: JSONSchema
       - url: json-ld/a10-networks-context.jsonld
         type: JSONLD
-      - url: capabilities/slb-virtual-servers.yaml
-        type: NaftikoCapability
-      - url: capabilities/slb-servers.yaml
-        type: NaftikoCapability
-      - url: capabilities/slb-service-groups.yaml
-        type: NaftikoCapability
-      - url: capabilities/slb-health-monitors.yaml
-        type: NaftikoCapability
       - url: rules/a10-networks-rules.yml
         type: SpectralRuleset
   - aid: a10-networks:thunder-kubernetes-connector
@@ -110,14 +89,11 @@ apis:
       - Service Mesh
     humanURL: https://github.com/a10networks/tkc-doc
     description: >-
-      The Thunder Kubernetes Connector (TKC) runs inside Kubernetes and
-      configures upstream Thunder ADC objects automatically as pods are
-      created and scaled. It defines 24 CRDs covering VirtualServer,
-      VirtualPort, ServiceGroup, HealthMonitor, NatPool, A10IPPool,
-      ActiveActiveHADevice, ClientSsl/ServerSsl templates, TCP/UDP/HTTP/
-      HTTPS templates, persistence templates, policy templates, and
-      cipher templates — exposing the full L4–L7 ADC surface as native
-      Kubernetes resources.
+      The Thunder Kubernetes Connector (TKC) runs inside Kubernetes and configures upstream Thunder ADC objects
+      automatically as pods are created and scaled. It defines 24 CRDs covering VirtualServer, VirtualPort,
+      ServiceGroup, HealthMonitor, NatPool, A10IPPool, ActiveActiveHADevice, ClientSsl/ServerSsl templates,
+      TCP/UDP/HTTP/ HTTPS templates, persistence templates, policy templates, and cipher templates — exposing the full
+      L4–L7 ADC surface as native Kubernetes resources.
     properties:
       - url: https://github.com/a10networks/tkc-doc
         type: Documentation
@@ -126,7 +102,6 @@ apis:
       - url: crd/
         type: KubernetesCRD
         x-description: 24 CRDs covering the SLB and template object model.
-
 common:
   - type: Website
     url: https://www.a10networks.com
@@ -182,7 +157,6 @@ common:
     url: https://www.youtube.com/user/a10networks
   - type: GitHub
     url: https://github.com/a10networks
-
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
