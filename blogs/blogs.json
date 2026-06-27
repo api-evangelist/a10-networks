@@ -2,29 +2,41 @@
   "repo": "a10-networks",
   "feeds": [
     {
-      "source": "https://www.a10networks.com/blog/",
+      "source": "https://www.a10networks.com/feed/",
       "feed_url": "https://www.a10networks.com/feed/",
-      "title": "A10 Networks",
-      "saved": 8,
+      "title": "",
+      "saved": 2,
       "method": "feed"
     },
     {
       "source": "https://www.a10networks.com/blog/feed/",
       "feed_url": "https://www.a10networks.com/blog/feed/",
-      "title": "Comments on: Blog",
+      "title": "",
       "saved": 0,
-      "method": "feed",
-      "note": "Resolves to a comments-only feed with no post items; posts feed is /feed/."
+      "method": "feed"
+    },
+    {
+      "source": "https://www.a10networks.com/blog/axapi-rest-based-application-programming-interface-integration/feed/",
+      "feed_url": "https://www.a10networks.com/blog/axapi-rest-based-application-programming-interface-integration/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
     },
     {
       "source": "https://www.a10networks.com/blog/axapi-rest-based-application-programming-interface-integration/",
       "feed_url": "https://www.a10networks.com/blog/axapi-rest-based-application-programming-interface-integration/feed/",
       "title": "",
       "saved": 0,
-      "method": "discovered",
-      "note": "Single-post permalink; per-post comment feed only."
+      "method": "discovered"
+    },
+    {
+      "source": "https://glm.a10networks.com",
+      "feed_url": "https://glm.a10networks.com",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 9,
-  "fetched": "2026-06-21T17:00:00Z"
+  "post_count": 11,
+  "fetched": "2026-06-27T12:03:07Z"
 }
