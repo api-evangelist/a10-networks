@@ -103,6 +103,8 @@ apis:
         type: KubernetesCRD
         x-description: 24 CRDs covering the SLB and template object model.
 common:
+  - type: DomainSecurity
+    url: security/a10-networks-domain-security.yml
   - type: Website
     url: https://www.a10networks.com
   - type: Products
