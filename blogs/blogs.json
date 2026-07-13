@@ -5,7 +5,7 @@
       "source": "https://www.a10networks.com/feed/",
       "feed_url": "https://www.a10networks.com/feed/",
       "title": "",
-      "saved": 2,
+      "saved": 0,
       "method": "feed"
     },
     {
@@ -23,20 +23,20 @@
       "method": "feed"
     },
     {
-      "source": "https://www.a10networks.com/blog/axapi-rest-based-application-programming-interface-integration/",
-      "feed_url": "https://www.a10networks.com/blog/axapi-rest-based-application-programming-interface-integration/feed/",
-      "title": "",
-      "saved": 0,
-      "method": "discovered"
-    },
-    {
       "source": "https://glm.a10networks.com",
       "feed_url": "https://glm.a10networks.com",
       "title": "",
       "saved": 0,
       "method": "none"
+    },
+    {
+      "source": "https://www.a10networks.com/blog/axapi-rest-based-application-programming-interface-integration/",
+      "feed_url": "https://www.a10networks.com/blog/axapi-rest-based-application-programming-interface-integration/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
     }
   ],
-  "post_count": 11,
-  "fetched": "2026-06-27T12:03:07Z"
+  "post_count": 18,
+  "fetched": "2026-07-11T11:50:51Z"
 }
