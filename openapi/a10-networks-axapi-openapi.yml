@@ -408,7 +408,7 @@ components:
           properties:
             signature:
               type: string
-              description: Session signature; supply as `Authorization: A10 <signature>` on subsequent calls.
+              description: "Session signature; supply as `Authorization: A10 <signature>` on subsequent calls."
             description:
               type: string
     VirtualServer:
