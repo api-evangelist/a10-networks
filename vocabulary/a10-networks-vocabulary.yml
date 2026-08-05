@@ -22,7 +22,7 @@ operational:
   - term: HA Group
     definition: Active-active or active-standby high-availability grouping identifier.
   - term: Signature
-    definition: Session token returned by POST /axapi/v3/auth, sent in the `Authorization: A10 <signature>` header.
+    definition: "Session token returned by POST /axapi/v3/auth, sent in the `Authorization: A10 <signature>` header."
 slb:
   - term: SLB
     definition: Server Load Balancing — A10's L4–L7 load balancing surface.
