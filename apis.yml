@@ -54,66 +54,159 @@ created: '2026-05-25'
 modified: '2026-05-25'
 specificationVersion: '0.20'
 apis:
-  - aid: a10-networks:a10-networks-axapi
-    name: A10 Networks ACOS aXAPI v3
-    tags:
-      - Application Delivery
-      - Load Balancing
-      - DDoS Protection
-      - SLB
-      - REST API
-      - ACOS
-    humanURL: https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html
-    description: >-
-      The ACOS aXAPI v3 is the RESTful HTTPS configuration and operational control plane for every A10 Thunder device —
-      physical, virtual (vThunder), or containerized. It covers the full ACOS object model: Server Load Balancing
-      (virtual servers, real servers, service groups, health monitors, SSL templates, aFleX scripts), GSLB, DDoS
-      protection objects, CGNAT pools, system configuration, networking, routing, partitions, and operational/statistics
-      resources. Authentication is session-based (POST /axapi/v3/auth returns a signature for the `Authorization: A10
-      <signature>` header). The aXAPI is the substrate under the Terraform provider, the Ansible collections, the
-      Kubernetes Connector, and the Python acos-client.
-    properties:
-      - url: https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html
-        type: Documentation
-      - url: https://documentation.a10networks.com/ACOS-Docs/axapi/608/index.html
-        type: Documentation
-      - url: https://www.a10networks.com/blog/axapi-rest-based-application-programming-interface-integration/
-        type: Blog
-      - url: openapi/a10-networks-axapi-openapi.yml
-        type: OpenAPI
-      - url: json-schema/a10-networks-virtual-server-schema.json
-        type: JSONSchema
-      - url: json-schema/a10-networks-server-schema.json
-        type: JSONSchema
-      - url: json-schema/a10-networks-service-group-schema.json
-        type: JSONSchema
-      - url: json-ld/a10-networks-context.jsonld
-        type: JSONLD
-      - url: rules/a10-networks-rules.yml
-        type: SpectralRuleset
-  - aid: a10-networks:thunder-kubernetes-connector
-    name: A10 Thunder Kubernetes Connector (TKC)
-    tags:
-      - Kubernetes
-      - CRD
-      - Cloud Native
-      - Application Delivery
-      - Service Mesh
-    humanURL: https://github.com/a10networks/tkc-doc
-    description: >-
-      The Thunder Kubernetes Connector (TKC) runs inside Kubernetes and configures upstream Thunder ADC objects
-      automatically as pods are created and scaled. It defines 24 CRDs covering VirtualServer, VirtualPort,
-      ServiceGroup, HealthMonitor, NatPool, A10IPPool, ActiveActiveHADevice, ClientSsl/ServerSsl templates,
-      TCP/UDP/HTTP/ HTTPS templates, persistence templates, policy templates, and cipher templates — exposing the full
-      L4–L7 ADC surface as native Kubernetes resources.
-    properties:
-      - url: https://github.com/a10networks/tkc-doc
-        type: Documentation
-      - url: https://github.com/a10networks/tkc-doc
-        type: SourceCode
-      - url: crd/
-        type: KubernetesCRD
-        x-description: 24 CRDs covering the SLB and template object model.
+- aid: a10-networks:thunder-kubernetes-connector
+  name: A10 Thunder Kubernetes Connector (TKC)
+  tags:
+  - Kubernetes
+  - CRD
+  - Cloud Native
+  - Application Delivery
+  - Service Mesh
+  humanURL: https://github.com/a10networks/tkc-doc
+  description: >-
+    The Thunder Kubernetes Connector (TKC) runs inside Kubernetes and configures upstream Thunder ADC
+    objects automatically as pods are created and scaled. It defines 24 CRDs covering VirtualServer, VirtualPort,
+    ServiceGroup, HealthMonitor, NatPool, A10IPPool, ActiveActiveHADevice, ClientSsl/ServerSsl templates,
+    TCP/UDP/HTTP/ HTTPS templates, persistence templates, policy templates, and cipher templates — exposing
+    the full L4–L7 ADC surface as native Kubernetes resources.
+  properties:
+  - url: https://github.com/a10networks/tkc-doc
+    type: Documentation
+  - url: https://github.com/a10networks/tkc-doc
+    type: SourceCode
+  - url: crd/
+    type: KubernetesCRD
+    x-description: 24 CRDs covering the SLB and template object model.
+- aid: a10-networks:a10-networks-authentication-api
+  name: A10 Networks Authentication API
+  description: Session sign-on and sign-off
+  humanURL: https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/a10-networks-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html
+  - type: Documentation
+    url: https://documentation.a10networks.com/ACOS-Docs/axapi/608/index.html
+  - type: Blog
+    url: >-
+      https://www.a10networks.com/blog/axapi-rest-based-application-programming-interface-integration/
+  - type: JSONSchema
+    url: json-schema/a10-networks-virtual-server-schema.json
+  - type: JSONSchema
+    url: json-schema/a10-networks-server-schema.json
+  - type: JSONSchema
+    url: json-schema/a10-networks-service-group-schema.json
+  - type: JSONLD
+    url: json-ld/a10-networks-context.jsonld
+  - type: SpectralRuleset
+    url: rules/a10-networks-rules.yml
+- aid: a10-networks:a10-networks-slb-health-monitor-api
+  name: A10 Networks SLB Health Monitor API
+  description: Active health probes attached to servers and service groups
+  humanURL: https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html
+  tags:
+  - SLB Health Monitor
+  properties:
+  - type: OpenAPI
+    url: openapi/a10-networks-slb-health-monitor-api-openapi.yml
+  - type: Documentation
+    url: https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html
+  - type: Documentation
+    url: https://documentation.a10networks.com/ACOS-Docs/axapi/608/index.html
+  - type: Blog
+    url: >-
+      https://www.a10networks.com/blog/axapi-rest-based-application-programming-interface-integration/
+  - type: JSONSchema
+    url: json-schema/a10-networks-virtual-server-schema.json
+  - type: JSONSchema
+    url: json-schema/a10-networks-server-schema.json
+  - type: JSONSchema
+    url: json-schema/a10-networks-service-group-schema.json
+  - type: JSONLD
+    url: json-ld/a10-networks-context.jsonld
+  - type: SpectralRuleset
+    url: rules/a10-networks-rules.yml
+- aid: a10-networks:a10-networks-slb-server-api
+  name: A10 Networks SLB Server API
+  description: Real backend servers
+  humanURL: https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html
+  tags:
+  - SLB Server
+  properties:
+  - type: OpenAPI
+    url: openapi/a10-networks-slb-server-api-openapi.yml
+  - type: Documentation
+    url: https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html
+  - type: Documentation
+    url: https://documentation.a10networks.com/ACOS-Docs/axapi/608/index.html
+  - type: Blog
+    url: >-
+      https://www.a10networks.com/blog/axapi-rest-based-application-programming-interface-integration/
+  - type: JSONSchema
+    url: json-schema/a10-networks-virtual-server-schema.json
+  - type: JSONSchema
+    url: json-schema/a10-networks-server-schema.json
+  - type: JSONSchema
+    url: json-schema/a10-networks-service-group-schema.json
+  - type: JSONLD
+    url: json-ld/a10-networks-context.jsonld
+  - type: SpectralRuleset
+    url: rules/a10-networks-rules.yml
+- aid: a10-networks:a10-networks-slb-service-group-api
+  name: A10 Networks SLB Service Group API
+  description: Service groups (pools) that bind real servers to a load-balancing method
+  humanURL: https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html
+  tags:
+  - SLB Service Group
+  properties:
+  - type: OpenAPI
+    url: openapi/a10-networks-slb-service-group-api-openapi.yml
+  - type: Documentation
+    url: https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html
+  - type: Documentation
+    url: https://documentation.a10networks.com/ACOS-Docs/axapi/608/index.html
+  - type: Blog
+    url: >-
+      https://www.a10networks.com/blog/axapi-rest-based-application-programming-interface-integration/
+  - type: JSONSchema
+    url: json-schema/a10-networks-virtual-server-schema.json
+  - type: JSONSchema
+    url: json-schema/a10-networks-server-schema.json
+  - type: JSONSchema
+    url: json-schema/a10-networks-service-group-schema.json
+  - type: JSONLD
+    url: json-ld/a10-networks-context.jsonld
+  - type: SpectralRuleset
+    url: rules/a10-networks-rules.yml
+- aid: a10-networks:a10-networks-slb-virtual-server-api
+  name: A10 Networks SLB Virtual Server API
+  description: Virtual servers (VIPs) that front pools of real servers
+  humanURL: https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html
+  tags:
+  - SLB Virtual Server
+  properties:
+  - type: OpenAPI
+    url: openapi/a10-networks-slb-virtual-server-api-openapi.yml
+  - type: Documentation
+    url: https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html
+  - type: Documentation
+    url: https://documentation.a10networks.com/ACOS-Docs/axapi/608/index.html
+  - type: Blog
+    url: >-
+      https://www.a10networks.com/blog/axapi-rest-based-application-programming-interface-integration/
+  - type: JSONSchema
+    url: json-schema/a10-networks-virtual-server-schema.json
+  - type: JSONSchema
+    url: json-schema/a10-networks-server-schema.json
+  - type: JSONSchema
+    url: json-schema/a10-networks-service-group-schema.json
+  - type: JSONLD
+    url: json-ld/a10-networks-context.jsonld
+  - type: SpectralRuleset
+    url: rules/a10-networks-rules.yml
 common:
   - type: DomainSecurity
     url: security/a10-networks-domain-security.yml
