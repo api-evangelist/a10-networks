@@ -30,13 +30,13 @@
       "method": "none"
     },
     {
-      "source": "https://www.a10networks.com/blog/axapi-rest-based-application-programming-interface-integration/",
-      "feed_url": "https://www.a10networks.com/blog/axapi-rest-based-application-programming-interface-integration/feed/",
+      "source": "https://documentation.a10networks.com/ACOS-Docs/axapi/608/index.html",
+      "feed_url": "https://documentation.a10networks.com/ACOS-Docs/axapi/608/index.html",
       "title": "",
       "saved": 0,
-      "method": "discovered"
+      "method": "none"
     }
   ],
-  "post_count": 29,
-  "fetched": "2026-08-06T14:08:46Z"
+  "post_count": 31,
+  "fetched": "2026-08-15T12:22:01Z"
 }
