@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "A10 Networks ACOS aXAPI v3 Authentication API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Sign On To ACOS",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{thunder-host}/axapi/v3/auth",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticate with the ACOS device and receive a signature token. The returned signature must be sent in the `Authorization: A10 <signature>` header for every subsequent aXAPI request. Sessions expire after the device-configured idle timeout.\n"
+        },
+        {
+          "info": {
+            "name": "Sign Off From ACOS",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{thunder-host}/axapi/v3/logoff"
+          },
+          "docs": "Terminate the authenticated session and invalidate the signature."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

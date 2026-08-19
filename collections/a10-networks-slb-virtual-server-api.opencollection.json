@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "A10 Networks ACOS aXAPI v3 SLB Virtual Server API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SLB Virtual Server",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Virtual Servers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{thunder-host}/axapi/v3/slb/virtual-server"
+          },
+          "docs": "List all configured SLB virtual servers (VIPs) on the device."
+        },
+        {
+          "info": {
+            "name": "Create A Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{thunder-host}/axapi/v3/slb/virtual-server",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new SLB virtual server (VIP). The virtual server binds an IP address to one or more virtual ports backed by service groups."
+        },
+        {
+          "info": {
+            "name": "Get A Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{thunder-host}/axapi/v3/slb/virtual-server/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get A Virtual Server"
+        },
+        {
+          "info": {
+            "name": "Update A Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{thunder-host}/axapi/v3/slb/virtual-server/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update A Virtual Server"
+        },
+        {
+          "info": {
+            "name": "Delete A Virtual Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{thunder-host}/axapi/v3/slb/virtual-server/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete A Virtual Server"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

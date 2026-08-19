@@ -1,0 +1,597 @@
+{
+  "item": [
+    {
+      "id": "63415f3f-2195-4dee-8fe0-a14bfa280258",
+      "name": "SLB Service Group",
+      "description": {
+        "content": "Service groups (pools) that bind real servers to a load-balancing method",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aff794d0-917c-4d15-86b0-f37c6b30313c",
+          "name": "List Service Groups",
+          "request": {
+            "name": "List Service Groups",
+            "description": {},
+            "url": {
+              "path": [
+                "axapi",
+                "v3",
+                "slb",
+                "service-group"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                  "type": "any",
+                  "value": "{{thunder-host}}",
+                  "key": "thunder-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4cd7211-fdc8-4a2c-90fa-29f385578d40",
+              "name": "A list of service groups.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "axapi",
+                    "v3",
+                    "slb",
+                    "service-group"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                      "type": "any",
+                      "value": "{{thunder-host}}",
+                      "key": "thunder-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"service-group-list\": [\n    {\n      \"name\": \"string\",\n      \"protocol\": \"tcp\",\n      \"lb-method\": \"per-pkt-round-robin\",\n      \"health-check\": \"string\",\n      \"member-list\": [\n        {\n          \"name\": \"string\",\n          \"port\": 2440,\n          \"member-state\": \"enable\",\n          \"member-priority\": 6401\n        },\n        {\n          \"name\": \"string\",\n          \"port\": 6717,\n          \"member-state\": \"disable-with-health-check\",\n          \"member-priority\": 6328\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"protocol\": \"udp\",\n      \"lb-method\": \"odd-even-hash\",\n      \"health-check\": \"string\",\n      \"member-list\": [\n        {\n          \"name\": \"string\",\n          \"port\": 5427,\n          \"member-state\": \"disable-with-health-check\",\n          \"member-priority\": 9902\n        },\n        {\n          \"name\": \"string\",\n          \"port\": 1576,\n          \"member-state\": \"enable\",\n          \"member-priority\": 5198\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7bc7b2a7-f89c-4f63-875b-7f6d8071ec8b",
+          "name": "Create A Service Group",
+          "request": {
+            "name": "Create A Service Group",
+            "description": {},
+            "url": {
+              "path": [
+                "axapi",
+                "v3",
+                "slb",
+                "service-group"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                  "type": "any",
+                  "value": "{{thunder-host}}",
+                  "key": "thunder-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"service-group\": {\n    \"name\": \"<string>\",\n    \"protocol\": \"<string>\",\n    \"lb-method\": \"<string>\",\n    \"health-check\": \"<string>\",\n    \"member-list\": [\n      {\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"member-state\": \"<string>\",\n        \"member-priority\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"member-state\": \"<string>\",\n        \"member-priority\": \"<integer>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7e1fb1d9-3aa5-4a80-984b-bed40a86ee4c",
+              "name": "Service group created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "axapi",
+                    "v3",
+                    "slb",
+                    "service-group"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                      "type": "any",
+                      "value": "{{thunder-host}}",
+                      "key": "thunder-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"service-group\": {\n    \"name\": \"<string>\",\n    \"protocol\": \"<string>\",\n    \"lb-method\": \"<string>\",\n    \"health-check\": \"<string>\",\n    \"member-list\": [\n      {\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"member-state\": \"<string>\",\n        \"member-priority\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"member-state\": \"<string>\",\n        \"member-priority\": \"<integer>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a85db578-e7f9-4966-ad63-f829488d6efa",
+          "name": "Get A Service Group",
+          "request": {
+            "name": "Get A Service Group",
+            "description": {},
+            "url": {
+              "path": [
+                "axapi",
+                "v3",
+                "slb",
+                "service-group",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                  "type": "any",
+                  "value": "{{thunder-host}}",
+                  "key": "thunder-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fa574edf-57b8-4ade-998b-e675bea4748a",
+              "name": "The service group.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "axapi",
+                    "v3",
+                    "slb",
+                    "service-group",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                      "type": "any",
+                      "value": "{{thunder-host}}",
+                      "key": "thunder-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"service-group\": {\n    \"name\": \"<string>\",\n    \"protocol\": \"<string>\",\n    \"lb-method\": \"<string>\",\n    \"health-check\": \"<string>\",\n    \"member-list\": [\n      {\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"member-state\": \"<string>\",\n        \"member-priority\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"member-state\": \"<string>\",\n        \"member-priority\": \"<integer>\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb3db1b7-0ef3-4c2c-851c-9dca80c60be8",
+          "name": "Update A Service Group",
+          "request": {
+            "name": "Update A Service Group",
+            "description": {},
+            "url": {
+              "path": [
+                "axapi",
+                "v3",
+                "slb",
+                "service-group",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                  "type": "any",
+                  "value": "{{thunder-host}}",
+                  "key": "thunder-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"service-group\": {\n    \"name\": \"<string>\",\n    \"protocol\": \"<string>\",\n    \"lb-method\": \"<string>\",\n    \"health-check\": \"<string>\",\n    \"member-list\": [\n      {\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"member-state\": \"<string>\",\n        \"member-priority\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"member-state\": \"<string>\",\n        \"member-priority\": \"<integer>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4797f678-e2ef-43f6-8a48-37a393e2ded0",
+              "name": "Service group updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "axapi",
+                    "v3",
+                    "slb",
+                    "service-group",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                      "type": "any",
+                      "value": "{{thunder-host}}",
+                      "key": "thunder-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"service-group\": {\n    \"name\": \"<string>\",\n    \"protocol\": \"<string>\",\n    \"lb-method\": \"<string>\",\n    \"health-check\": \"<string>\",\n    \"member-list\": [\n      {\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"member-state\": \"<string>\",\n        \"member-priority\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"port\": \"<integer>\",\n        \"member-state\": \"<string>\",\n        \"member-priority\": \"<integer>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f6658f5-fe73-49b9-b886-2f2ca52a48ac",
+          "name": "Delete A Service Group",
+          "request": {
+            "name": "Delete A Service Group",
+            "description": {},
+            "url": {
+              "path": [
+                "axapi",
+                "v3",
+                "slb",
+                "service-group",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                  "type": "any",
+                  "value": "{{thunder-host}}",
+                  "key": "thunder-host"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "69a97640-5ad9-4630-91c1-cafbb1ce8447",
+              "name": "Service group deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "axapi",
+                    "v3",
+                    "slb",
+                    "service-group",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                      "type": "any",
+                      "value": "{{thunder-host}}",
+                      "key": "thunder-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the ACOS device or vThunder instance.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "thunder.example.com",
+      "key": "thunder-host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{thunder-host}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c5a3b2a0-c66c-4ebf-9041-2cd0c67a5c29",
+    "name": "A10 Networks ACOS aXAPI v3 SLB Service Group API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ACOS aXAPI is a RESTful HTTPS interface for configuring and operating A10 Networks Thunder Application Delivery Controllers and DDoS protection devices running ACOS (Application Centric Operating System). The aXAPI v3 surface is exhaustive (the Terraform provider exposes 3,627 resources): this profile captures the authentication flow and the core Server Load Balancing (SLB) configuration surface — virtual servers, real servers, service groups, and health monitors — which are the most commonly automated objects across ACOS deployments. ACOS 4.0.0 through ACOS 7.0.2 are supported.\n\n\nContact Support:\n Name: A10 Networks Support",
+      "type": "text/plain"
+    }
+  }
+}

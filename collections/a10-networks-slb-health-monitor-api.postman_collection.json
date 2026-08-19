@@ -1,0 +1,261 @@
+{
+  "item": [
+    {
+      "id": "b0e367a3-be13-4592-b56a-7067cb4c698b",
+      "name": "SLB Health Monitor",
+      "description": {
+        "content": "Active health probes attached to servers and service groups",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "560ea2fc-7fb8-43d1-abe6-113e8c489a17",
+          "name": "List Health Monitors",
+          "request": {
+            "name": "List Health Monitors",
+            "description": {},
+            "url": {
+              "path": [
+                "axapi",
+                "v3",
+                "health",
+                "monitor"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                  "type": "any",
+                  "value": "{{thunder-host}}",
+                  "key": "thunder-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1dd230ba-3dd6-4b82-8e1e-7fae9f6441b2",
+              "name": "A list of health monitors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "axapi",
+                    "v3",
+                    "health",
+                    "monitor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                      "type": "any",
+                      "value": "{{thunder-host}}",
+                      "key": "thunder-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"monitor-list\": [\n    {\n      \"name\": \"string\",\n      \"retry\": 6555,\n      \"consec-pass-value\": 4670,\n      \"interval\": 3351,\n      \"timeout\": 8376,\n      \"method\": {}\n    },\n    {\n      \"name\": \"string\",\n      \"retry\": 5074,\n      \"consec-pass-value\": 2124,\n      \"interval\": 825,\n      \"timeout\": 7740,\n      \"method\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d96a025d-ad83-49a8-a154-0ef9a76275d6",
+          "name": "Create A Health Monitor",
+          "request": {
+            "name": "Create A Health Monitor",
+            "description": {},
+            "url": {
+              "path": [
+                "axapi",
+                "v3",
+                "health",
+                "monitor"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                  "type": "any",
+                  "value": "{{thunder-host}}",
+                  "key": "thunder-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"monitor\": {\n    \"name\": \"<string>\",\n    \"retry\": \"<integer>\",\n    \"consec-pass-value\": \"<integer>\",\n    \"interval\": \"<integer>\",\n    \"timeout\": \"<integer>\",\n    \"method\": \"<object>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b00c27e1-b565-4010-b344-12c52e75b740",
+              "name": "Health monitor created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "axapi",
+                    "v3",
+                    "health",
+                    "monitor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                      "type": "any",
+                      "value": "{{thunder-host}}",
+                      "key": "thunder-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"monitor\": {\n    \"name\": \"<string>\",\n    \"retry\": \"<integer>\",\n    \"consec-pass-value\": \"<integer>\",\n    \"interval\": \"<integer>\",\n    \"timeout\": \"<integer>\",\n    \"method\": \"<object>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the ACOS device or vThunder instance.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "thunder.example.com",
+      "key": "thunder-host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{thunder-host}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f09e636a-85f1-4049-85be-14f5d1a7def2",
+    "name": "A10 Networks ACOS aXAPI v3 SLB Health Monitor API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ACOS aXAPI is a RESTful HTTPS interface for configuring and operating A10 Networks Thunder Application Delivery Controllers and DDoS protection devices running ACOS (Application Centric Operating System). The aXAPI v3 surface is exhaustive (the Terraform provider exposes 3,627 resources): this profile captures the authentication flow and the core Server Load Balancing (SLB) configuration surface — virtual servers, real servers, service groups, and health monitors — which are the most commonly automated objects across ACOS deployments. ACOS 4.0.0 through ACOS 7.0.2 are supported.\n\n\nContact Support:\n Name: A10 Networks Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,92 @@
+openapi: 3.2.0
+info:
+  title: A10 Networks ACOS aXAPI v3 SLB Health Monitor API
+  description: 'The ACOS aXAPI is a RESTful HTTPS interface for configuring and operating A10 Networks Thunder Application Delivery Controllers and DDoS protection devices running ACOS (Application Centric Operating System). The aXAPI v3 surface is exhaustive (the Terraform provider exposes 3,627 resources): this profile captures the authentication flow and the core Server Load Balancing (SLB) configuration surface — virtual servers, real servers, service groups, and health monitors — which are the most commonly automated objects across ACOS deployments. ACOS 4.0.0 through ACOS 7.0.2 are supported.
+
+    '
+  version: '3.0'
+  contact:
+    name: A10 Networks Support
+    url: https://www.a10networks.com/support
+  license:
+    name: A10 Networks End User License Agreement
+    url: https://www.a10networks.com/company/legal/end-user-license-agreement/
+servers:
+- url: https://{thunder-host}
+  description: ACOS Thunder Appliance, vThunder VM, or vThunder Container (customer-hosted)
+  variables:
+    thunder-host:
+      default: thunder.example.com
+      description: Hostname or IP address of the ACOS device or vThunder instance.
+security:
+- A10Signature: []
+tags:
+- name: SLB Health Monitor
+  description: Active health probes attached to servers and service groups
+paths:
+  /axapi/v3/health/monitor:
+    get:
+      summary: List Health Monitors
+      operationId: listHealthMonitors
+      tags:
+      - SLB Health Monitor
+      responses:
+        '200':
+          description: A list of health monitors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  monitor-list:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/HealthMonitor'
+    post:
+      summary: Create A Health Monitor
+      operationId: createHealthMonitor
+      tags:
+      - SLB Health Monitor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                monitor:
+                  $ref: '#/components/schemas/HealthMonitor'
+      responses:
+        '200':
+          description: Health monitor created.
+components:
+  schemas:
+    HealthMonitor:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        retry:
+          type: integer
+          description: Consecutive failures before a server is marked down.
+        consec-pass-value:
+          type: integer
+          description: Consecutive successes before a server is marked up.
+        interval:
+          type: integer
+          description: Probe interval in seconds.
+        timeout:
+          type: integer
+        method:
+          type: object
+          description: One-of probe-type discriminator (http, https, tcp, udp, icmp, dns, ftp, smtp, snmp, radius, etc).
+  securitySchemes:
+    A10Signature:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Signature returned from POST /axapi/v3/auth, sent as `Authorization: A10 <signature>`.
+
+        '

@@ -1,0 +1,192 @@
+openapi: 3.2.0
+info:
+  title: A10 Networks ACOS aXAPI v3 SLB Virtual Server API
+  description: 'The ACOS aXAPI is a RESTful HTTPS interface for configuring and operating A10 Networks Thunder Application Delivery Controllers and DDoS protection devices running ACOS (Application Centric Operating System). The aXAPI v3 surface is exhaustive (the Terraform provider exposes 3,627 resources): this profile captures the authentication flow and the core Server Load Balancing (SLB) configuration surface — virtual servers, real servers, service groups, and health monitors — which are the most commonly automated objects across ACOS deployments. ACOS 4.0.0 through ACOS 7.0.2 are supported.
+
+    '
+  version: '3.0'
+  contact:
+    name: A10 Networks Support
+    url: https://www.a10networks.com/support
+  license:
+    name: A10 Networks End User License Agreement
+    url: https://www.a10networks.com/company/legal/end-user-license-agreement/
+servers:
+- url: https://{thunder-host}
+  description: ACOS Thunder Appliance, vThunder VM, or vThunder Container (customer-hosted)
+  variables:
+    thunder-host:
+      default: thunder.example.com
+      description: Hostname or IP address of the ACOS device or vThunder instance.
+security:
+- A10Signature: []
+tags:
+- name: SLB Virtual Server
+  description: Virtual servers (VIPs) that front pools of real servers
+paths:
+  /axapi/v3/slb/virtual-server:
+    get:
+      summary: List Virtual Servers
+      description: List all configured SLB virtual servers (VIPs) on the device.
+      operationId: listVirtualServers
+      tags:
+      - SLB Virtual Server
+      responses:
+        '200':
+          description: A list of virtual servers.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  virtual-server-list:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/VirtualServer'
+    post:
+      summary: Create A Virtual Server
+      description: Create a new SLB virtual server (VIP). The virtual server binds an IP address to one or more virtual ports backed by service groups.
+      operationId: createVirtualServer
+      tags:
+      - SLB Virtual Server
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                virtual-server:
+                  $ref: '#/components/schemas/VirtualServer'
+      responses:
+        '200':
+          description: Virtual server created.
+  /axapi/v3/slb/virtual-server/{name}:
+    parameters:
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Get A Virtual Server
+      operationId: getVirtualServer
+      tags:
+      - SLB Virtual Server
+      responses:
+        '200':
+          description: The virtual server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  virtual-server:
+                    $ref: '#/components/schemas/VirtualServer'
+    put:
+      summary: Update A Virtual Server
+      operationId: updateVirtualServer
+      tags:
+      - SLB Virtual Server
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                virtual-server:
+                  $ref: '#/components/schemas/VirtualServer'
+      responses:
+        '200':
+          description: Virtual server updated.
+    delete:
+      summary: Delete A Virtual Server
+      operationId: deleteVirtualServer
+      tags:
+      - SLB Virtual Server
+      responses:
+        '200':
+          description: Virtual server deleted.
+components:
+  schemas:
+    VirtualServer:
+      type: object
+      required:
+      - name
+      - ip-address
+      properties:
+        name:
+          type: string
+          description: Unique virtual server name.
+        ip-address:
+          type: string
+          format: ipv4
+          description: VIP address.
+        ipv6-address:
+          type: string
+          format: ipv6
+        netmask:
+          type: string
+        port-list:
+          type: array
+          items:
+            $ref: '#/components/schemas/VirtualPort'
+        enable-disable-action:
+          type: string
+          enum:
+          - enable
+          - disable
+          - disable-when-all-ports-down
+          - disable-when-any-port-down
+        ha-group:
+          type: integer
+    VirtualPort:
+      type: object
+      required:
+      - port-number
+      - protocol
+      properties:
+        port-number:
+          type: integer
+        protocol:
+          type: string
+          enum:
+          - tcp
+          - udp
+          - http
+          - https
+          - fast-http
+          - ssl-proxy
+          - smtp
+          - ftp
+          - ftp-proxy
+          - rtsp
+          - mms
+          - sip
+          - sip-tcp
+          - sips
+          - diameter
+          - dns-tcp
+          - dns-udp
+          - mysql
+          - mssql
+          - radius
+          - smpp-tcp
+        service-group:
+          type: string
+          description: Name of the service group bound to this virtual port.
+        template-tcp:
+          type: string
+        template-http:
+          type: string
+        template-persist-source-ip:
+          type: string
+  securitySchemes:
+    A10Signature:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Signature returned from POST /axapi/v3/auth, sent as `Authorization: A10 <signature>`.
+
+        '

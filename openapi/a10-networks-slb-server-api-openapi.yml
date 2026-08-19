@@ -1,0 +1,157 @@
+openapi: 3.2.0
+info:
+  title: A10 Networks ACOS aXAPI v3 SLB Server API
+  description: 'The ACOS aXAPI is a RESTful HTTPS interface for configuring and operating A10 Networks Thunder Application Delivery Controllers and DDoS protection devices running ACOS (Application Centric Operating System). The aXAPI v3 surface is exhaustive (the Terraform provider exposes 3,627 resources): this profile captures the authentication flow and the core Server Load Balancing (SLB) configuration surface — virtual servers, real servers, service groups, and health monitors — which are the most commonly automated objects across ACOS deployments. ACOS 4.0.0 through ACOS 7.0.2 are supported.
+
+    '
+  version: '3.0'
+  contact:
+    name: A10 Networks Support
+    url: https://www.a10networks.com/support
+  license:
+    name: A10 Networks End User License Agreement
+    url: https://www.a10networks.com/company/legal/end-user-license-agreement/
+servers:
+- url: https://{thunder-host}
+  description: ACOS Thunder Appliance, vThunder VM, or vThunder Container (customer-hosted)
+  variables:
+    thunder-host:
+      default: thunder.example.com
+      description: Hostname or IP address of the ACOS device or vThunder instance.
+security:
+- A10Signature: []
+tags:
+- name: SLB Server
+  description: Real backend servers
+paths:
+  /axapi/v3/slb/server:
+    get:
+      summary: List Real Servers
+      operationId: listServers
+      tags:
+      - SLB Server
+      responses:
+        '200':
+          description: A list of real servers.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  server-list:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Server'
+    post:
+      summary: Create A Real Server
+      operationId: createServer
+      tags:
+      - SLB Server
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                server:
+                  $ref: '#/components/schemas/Server'
+      responses:
+        '200':
+          description: Real server created.
+  /axapi/v3/slb/server/{name}:
+    parameters:
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Get A Real Server
+      operationId: getServer
+      tags:
+      - SLB Server
+      responses:
+        '200':
+          description: The real server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  server:
+                    $ref: '#/components/schemas/Server'
+    put:
+      summary: Update A Real Server
+      operationId: updateServer
+      tags:
+      - SLB Server
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                server:
+                  $ref: '#/components/schemas/Server'
+      responses:
+        '200':
+          description: Real server updated.
+    delete:
+      summary: Delete A Real Server
+      operationId: deleteServer
+      tags:
+      - SLB Server
+      responses:
+        '200':
+          description: Real server deleted.
+components:
+  schemas:
+    Server:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        host:
+          type: string
+          description: IPv4 address or hostname of the real backend.
+        server-ipv6-addr:
+          type: string
+          format: ipv6
+        port-list:
+          type: array
+          items:
+            type: object
+            properties:
+              port-number:
+                type: integer
+              protocol:
+                type: string
+                enum:
+                - tcp
+                - udp
+              health-check:
+                type: string
+        weight:
+          type: integer
+          minimum: 1
+          maximum: 1000
+        action:
+          type: string
+          enum:
+          - enable
+          - disable
+        health-check:
+          type: string
+          description: Health monitor template name.
+  securitySchemes:
+    A10Signature:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Signature returned from POST /axapi/v3/auth, sent as `Authorization: A10 <signature>`.
+
+        '

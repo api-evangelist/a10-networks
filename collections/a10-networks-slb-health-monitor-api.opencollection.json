@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "A10 Networks ACOS aXAPI v3 SLB Health Monitor API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SLB Health Monitor",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Health Monitors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{thunder-host}/axapi/v3/health/monitor"
+          },
+          "docs": "List Health Monitors"
+        },
+        {
+          "info": {
+            "name": "Create A Health Monitor",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{thunder-host}/axapi/v3/health/monitor",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create A Health Monitor"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

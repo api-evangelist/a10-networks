@@ -1,0 +1,603 @@
+{
+  "item": [
+    {
+      "id": "bbc9a99e-4303-48b7-96b7-7600528a2aa2",
+      "name": "SLB Virtual Server",
+      "description": {
+        "content": "Virtual servers (VIPs) that front pools of real servers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5bde4707-305a-49de-a93c-aca62d675e02",
+          "name": "List Virtual Servers",
+          "request": {
+            "name": "List Virtual Servers",
+            "description": {
+              "content": "List all configured SLB virtual servers (VIPs) on the device.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "axapi",
+                "v3",
+                "slb",
+                "virtual-server"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                  "type": "any",
+                  "value": "{{thunder-host}}",
+                  "key": "thunder-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fae46633-6c6b-4262-8d8f-a125461a85ce",
+              "name": "A list of virtual servers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "axapi",
+                    "v3",
+                    "slb",
+                    "virtual-server"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                      "type": "any",
+                      "value": "{{thunder-host}}",
+                      "key": "thunder-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"virtual-server-list\": [\n    {\n      \"name\": \"string\",\n      \"ip-address\": \"149.85.43.18\",\n      \"ipv6-address\": \"a10b:5206:52c5:e9b1:09d6:463f:1925:facc\",\n      \"netmask\": \"string\",\n      \"port-list\": [\n        {\n          \"port-number\": 2016,\n          \"protocol\": \"https\",\n          \"service-group\": \"string\",\n          \"template-tcp\": \"string\",\n          \"template-http\": \"string\",\n          \"template-persist-source-ip\": \"string\"\n        },\n        {\n          \"port-number\": 7702,\n          \"protocol\": \"sip\",\n          \"service-group\": \"string\",\n          \"template-tcp\": \"string\",\n          \"template-http\": \"string\",\n          \"template-persist-source-ip\": \"string\"\n        }\n      ],\n      \"enable-disable-action\": \"disable\",\n      \"ha-group\": 171\n    },\n    {\n      \"name\": \"string\",\n      \"ip-address\": \"171.173.184.225\",\n      \"ipv6-address\": \"2c94:3af7:15ce:3a88:48a5:1d03:ebd8:31bc\",\n      \"netmask\": \"string\",\n      \"port-list\": [\n        {\n          \"port-number\": 9395,\n          \"protocol\": \"tcp\",\n          \"service-group\": \"string\",\n          \"template-tcp\": \"string\",\n          \"template-http\": \"string\",\n          \"template-persist-source-ip\": \"string\"\n        },\n        {\n          \"port-number\": 5090,\n          \"protocol\": \"mysql\",\n          \"service-group\": \"string\",\n          \"template-tcp\": \"string\",\n          \"template-http\": \"string\",\n          \"template-persist-source-ip\": \"string\"\n        }\n      ],\n      \"enable-disable-action\": \"disable-when-all-ports-down\",\n      \"ha-group\": 5344\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0cc57c61-95d7-4a4a-98b9-8dfd9caec0c4",
+          "name": "Create A Virtual Server",
+          "request": {
+            "name": "Create A Virtual Server",
+            "description": {
+              "content": "Create a new SLB virtual server (VIP). The virtual server binds an IP address to one or more virtual ports backed by service groups.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "axapi",
+                "v3",
+                "slb",
+                "virtual-server"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                  "type": "any",
+                  "value": "{{thunder-host}}",
+                  "key": "thunder-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"virtual-server\": {\n    \"name\": \"<string>\",\n    \"ip-address\": \"<ipv4>\",\n    \"ipv6-address\": \"<ipv6>\",\n    \"netmask\": \"<string>\",\n    \"port-list\": [\n      {\n        \"port-number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"service-group\": \"<string>\",\n        \"template-tcp\": \"<string>\",\n        \"template-http\": \"<string>\",\n        \"template-persist-source-ip\": \"<string>\"\n      },\n      {\n        \"port-number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"service-group\": \"<string>\",\n        \"template-tcp\": \"<string>\",\n        \"template-http\": \"<string>\",\n        \"template-persist-source-ip\": \"<string>\"\n      }\n    ],\n    \"enable-disable-action\": \"<string>\",\n    \"ha-group\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e3d642d1-714c-47c7-95f8-8b11583ee9f9",
+              "name": "Virtual server created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "axapi",
+                    "v3",
+                    "slb",
+                    "virtual-server"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                      "type": "any",
+                      "value": "{{thunder-host}}",
+                      "key": "thunder-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"virtual-server\": {\n    \"name\": \"<string>\",\n    \"ip-address\": \"<ipv4>\",\n    \"ipv6-address\": \"<ipv6>\",\n    \"netmask\": \"<string>\",\n    \"port-list\": [\n      {\n        \"port-number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"service-group\": \"<string>\",\n        \"template-tcp\": \"<string>\",\n        \"template-http\": \"<string>\",\n        \"template-persist-source-ip\": \"<string>\"\n      },\n      {\n        \"port-number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"service-group\": \"<string>\",\n        \"template-tcp\": \"<string>\",\n        \"template-http\": \"<string>\",\n        \"template-persist-source-ip\": \"<string>\"\n      }\n    ],\n    \"enable-disable-action\": \"<string>\",\n    \"ha-group\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c381785-5cd2-46f2-b71e-f11d2cceb8a8",
+          "name": "Get A Virtual Server",
+          "request": {
+            "name": "Get A Virtual Server",
+            "description": {},
+            "url": {
+              "path": [
+                "axapi",
+                "v3",
+                "slb",
+                "virtual-server",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                  "type": "any",
+                  "value": "{{thunder-host}}",
+                  "key": "thunder-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d8688ac-8692-4c4b-8bc1-70d910ca1f2a",
+              "name": "The virtual server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "axapi",
+                    "v3",
+                    "slb",
+                    "virtual-server",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                      "type": "any",
+                      "value": "{{thunder-host}}",
+                      "key": "thunder-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"virtual-server\": {\n    \"name\": \"<string>\",\n    \"ip-address\": \"<ipv4>\",\n    \"ipv6-address\": \"<ipv6>\",\n    \"netmask\": \"<string>\",\n    \"port-list\": [\n      {\n        \"port-number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"service-group\": \"<string>\",\n        \"template-tcp\": \"<string>\",\n        \"template-http\": \"<string>\",\n        \"template-persist-source-ip\": \"<string>\"\n      },\n      {\n        \"port-number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"service-group\": \"<string>\",\n        \"template-tcp\": \"<string>\",\n        \"template-http\": \"<string>\",\n        \"template-persist-source-ip\": \"<string>\"\n      }\n    ],\n    \"enable-disable-action\": \"<string>\",\n    \"ha-group\": \"<integer>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5a7e5d2-9f94-487c-a8f7-24d70e293e9c",
+          "name": "Update A Virtual Server",
+          "request": {
+            "name": "Update A Virtual Server",
+            "description": {},
+            "url": {
+              "path": [
+                "axapi",
+                "v3",
+                "slb",
+                "virtual-server",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                  "type": "any",
+                  "value": "{{thunder-host}}",
+                  "key": "thunder-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"virtual-server\": {\n    \"name\": \"<string>\",\n    \"ip-address\": \"<ipv4>\",\n    \"ipv6-address\": \"<ipv6>\",\n    \"netmask\": \"<string>\",\n    \"port-list\": [\n      {\n        \"port-number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"service-group\": \"<string>\",\n        \"template-tcp\": \"<string>\",\n        \"template-http\": \"<string>\",\n        \"template-persist-source-ip\": \"<string>\"\n      },\n      {\n        \"port-number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"service-group\": \"<string>\",\n        \"template-tcp\": \"<string>\",\n        \"template-http\": \"<string>\",\n        \"template-persist-source-ip\": \"<string>\"\n      }\n    ],\n    \"enable-disable-action\": \"<string>\",\n    \"ha-group\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9c6950b6-7263-4f1b-a6a9-43821beaedaf",
+              "name": "Virtual server updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "axapi",
+                    "v3",
+                    "slb",
+                    "virtual-server",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                      "type": "any",
+                      "value": "{{thunder-host}}",
+                      "key": "thunder-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"virtual-server\": {\n    \"name\": \"<string>\",\n    \"ip-address\": \"<ipv4>\",\n    \"ipv6-address\": \"<ipv6>\",\n    \"netmask\": \"<string>\",\n    \"port-list\": [\n      {\n        \"port-number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"service-group\": \"<string>\",\n        \"template-tcp\": \"<string>\",\n        \"template-http\": \"<string>\",\n        \"template-persist-source-ip\": \"<string>\"\n      },\n      {\n        \"port-number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"service-group\": \"<string>\",\n        \"template-tcp\": \"<string>\",\n        \"template-http\": \"<string>\",\n        \"template-persist-source-ip\": \"<string>\"\n      }\n    ],\n    \"enable-disable-action\": \"<string>\",\n    \"ha-group\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2871716-036f-4ee9-816c-a84a966adeaa",
+          "name": "Delete A Virtual Server",
+          "request": {
+            "name": "Delete A Virtual Server",
+            "description": {},
+            "url": {
+              "path": [
+                "axapi",
+                "v3",
+                "slb",
+                "virtual-server",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                  "type": "any",
+                  "value": "{{thunder-host}}",
+                  "key": "thunder-host"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e6d8967-e04b-4105-a94b-c178da685a6d",
+              "name": "Virtual server deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "axapi",
+                    "v3",
+                    "slb",
+                    "virtual-server",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                      "type": "any",
+                      "value": "{{thunder-host}}",
+                      "key": "thunder-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the ACOS device or vThunder instance.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "thunder.example.com",
+      "key": "thunder-host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{thunder-host}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "16850eed-0e3c-438b-a225-4b3c9e5e8409",
+    "name": "A10 Networks ACOS aXAPI v3 SLB Virtual Server API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ACOS aXAPI is a RESTful HTTPS interface for configuring and operating A10 Networks Thunder Application Delivery Controllers and DDoS protection devices running ACOS (Application Centric Operating System). The aXAPI v3 surface is exhaustive (the Terraform provider exposes 3,627 resources): this profile captures the authentication flow and the core Server Load Balancing (SLB) configuration surface — virtual servers, real servers, service groups, and health monitors — which are the most commonly automated objects across ACOS deployments. ACOS 4.0.0 through ACOS 7.0.2 are supported.\n\n\nContact Support:\n Name: A10 Networks Support",
+      "type": "text/plain"
+    }
+  }
+}

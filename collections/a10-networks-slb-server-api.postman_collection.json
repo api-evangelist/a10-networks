@@ -1,0 +1,597 @@
+{
+  "item": [
+    {
+      "id": "c7932ca3-634d-40ff-926c-0f6a96e66b46",
+      "name": "SLB Server",
+      "description": {
+        "content": "Real backend servers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "07fe9b0c-0872-472a-b87d-115667f38137",
+          "name": "List Real Servers",
+          "request": {
+            "name": "List Real Servers",
+            "description": {},
+            "url": {
+              "path": [
+                "axapi",
+                "v3",
+                "slb",
+                "server"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                  "type": "any",
+                  "value": "{{thunder-host}}",
+                  "key": "thunder-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "17a385fc-2c64-4d08-be5a-519e83f76a28",
+              "name": "A list of real servers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "axapi",
+                    "v3",
+                    "slb",
+                    "server"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                      "type": "any",
+                      "value": "{{thunder-host}}",
+                      "key": "thunder-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"server-list\": [\n    {\n      \"name\": \"string\",\n      \"host\": \"string\",\n      \"server-ipv6-addr\": \"f570:6829:3084:e6a2:9223:ef32:92a3:ec09\",\n      \"port-list\": [\n        {\n          \"port-number\": 3201,\n          \"protocol\": \"tcp\",\n          \"health-check\": \"string\"\n        },\n        {\n          \"port-number\": 8052,\n          \"protocol\": \"tcp\",\n          \"health-check\": \"string\"\n        }\n      ],\n      \"weight\": 91,\n      \"action\": \"disable\",\n      \"health-check\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"host\": \"string\",\n      \"server-ipv6-addr\": \"3482:5718:39ec:31ab:4be7:237e:99c6:c14d\",\n      \"port-list\": [\n        {\n          \"port-number\": 7861,\n          \"protocol\": \"tcp\",\n          \"health-check\": \"string\"\n        },\n        {\n          \"port-number\": 2819,\n          \"protocol\": \"udp\",\n          \"health-check\": \"string\"\n        }\n      ],\n      \"weight\": 960,\n      \"action\": \"enable\",\n      \"health-check\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d606d9d-1dbc-4084-843a-14d511b748fe",
+          "name": "Create A Real Server",
+          "request": {
+            "name": "Create A Real Server",
+            "description": {},
+            "url": {
+              "path": [
+                "axapi",
+                "v3",
+                "slb",
+                "server"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                  "type": "any",
+                  "value": "{{thunder-host}}",
+                  "key": "thunder-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"server\": {\n    \"name\": \"<string>\",\n    \"host\": \"<string>\",\n    \"server-ipv6-addr\": \"<ipv6>\",\n    \"port-list\": [\n      {\n        \"port-number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"health-check\": \"<string>\"\n      },\n      {\n        \"port-number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"health-check\": \"<string>\"\n      }\n    ],\n    \"weight\": \"<integer>\",\n    \"action\": \"<string>\",\n    \"health-check\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bbb27859-b7f8-49c7-8bad-a638665fda7d",
+              "name": "Real server created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "axapi",
+                    "v3",
+                    "slb",
+                    "server"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                      "type": "any",
+                      "value": "{{thunder-host}}",
+                      "key": "thunder-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"server\": {\n    \"name\": \"<string>\",\n    \"host\": \"<string>\",\n    \"server-ipv6-addr\": \"<ipv6>\",\n    \"port-list\": [\n      {\n        \"port-number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"health-check\": \"<string>\"\n      },\n      {\n        \"port-number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"health-check\": \"<string>\"\n      }\n    ],\n    \"weight\": \"<integer>\",\n    \"action\": \"<string>\",\n    \"health-check\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "acd3d48f-5ec1-4e53-865d-eb5037987c52",
+          "name": "Get A Real Server",
+          "request": {
+            "name": "Get A Real Server",
+            "description": {},
+            "url": {
+              "path": [
+                "axapi",
+                "v3",
+                "slb",
+                "server",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                  "type": "any",
+                  "value": "{{thunder-host}}",
+                  "key": "thunder-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed930013-c3ec-4030-8235-56c81e5b3d89",
+              "name": "The real server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "axapi",
+                    "v3",
+                    "slb",
+                    "server",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                      "type": "any",
+                      "value": "{{thunder-host}}",
+                      "key": "thunder-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"server\": {\n    \"name\": \"<string>\",\n    \"host\": \"<string>\",\n    \"server-ipv6-addr\": \"<ipv6>\",\n    \"port-list\": [\n      {\n        \"port-number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"health-check\": \"<string>\"\n      },\n      {\n        \"port-number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"health-check\": \"<string>\"\n      }\n    ],\n    \"weight\": \"<integer>\",\n    \"action\": \"<string>\",\n    \"health-check\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb60f7c4-b0a8-4a31-906b-ddc8e4dd6f04",
+          "name": "Update A Real Server",
+          "request": {
+            "name": "Update A Real Server",
+            "description": {},
+            "url": {
+              "path": [
+                "axapi",
+                "v3",
+                "slb",
+                "server",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                  "type": "any",
+                  "value": "{{thunder-host}}",
+                  "key": "thunder-host"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"server\": {\n    \"name\": \"<string>\",\n    \"host\": \"<string>\",\n    \"server-ipv6-addr\": \"<ipv6>\",\n    \"port-list\": [\n      {\n        \"port-number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"health-check\": \"<string>\"\n      },\n      {\n        \"port-number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"health-check\": \"<string>\"\n      }\n    ],\n    \"weight\": \"<integer>\",\n    \"action\": \"<string>\",\n    \"health-check\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "46115a7b-8cc4-4a75-bef5-103921943f61",
+              "name": "Real server updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "axapi",
+                    "v3",
+                    "slb",
+                    "server",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                      "type": "any",
+                      "value": "{{thunder-host}}",
+                      "key": "thunder-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"server\": {\n    \"name\": \"<string>\",\n    \"host\": \"<string>\",\n    \"server-ipv6-addr\": \"<ipv6>\",\n    \"port-list\": [\n      {\n        \"port-number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"health-check\": \"<string>\"\n      },\n      {\n        \"port-number\": \"<integer>\",\n        \"protocol\": \"<string>\",\n        \"health-check\": \"<string>\"\n      }\n    ],\n    \"weight\": \"<integer>\",\n    \"action\": \"<string>\",\n    \"health-check\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eef35905-b52c-4ce6-a7f3-d0167bc1b838",
+          "name": "Delete A Real Server",
+          "request": {
+            "name": "Delete A Real Server",
+            "description": {},
+            "url": {
+              "path": [
+                "axapi",
+                "v3",
+                "slb",
+                "server",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                  "type": "any",
+                  "value": "{{thunder-host}}",
+                  "key": "thunder-host"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "524edcf9-9c52-43a9-9847-f02b7cd3de85",
+              "name": "Real server deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "axapi",
+                    "v3",
+                    "slb",
+                    "server",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Hostname or IP address of the ACOS device or vThunder instance.",
+                      "type": "any",
+                      "value": "{{thunder-host}}",
+                      "key": "thunder-host"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Hostname or IP address of the ACOS device or vThunder instance.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "thunder.example.com",
+      "key": "thunder-host"
+    },
+    {
+      "type": "string",
+      "value": "https://{{thunder-host}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dc451284-5564-4af8-b850-e249d675009d",
+    "name": "A10 Networks ACOS aXAPI v3 SLB Server API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ACOS aXAPI is a RESTful HTTPS interface for configuring and operating A10 Networks Thunder Application Delivery Controllers and DDoS protection devices running ACOS (Application Centric Operating System). The aXAPI v3 surface is exhaustive (the Terraform provider exposes 3,627 resources): this profile captures the authentication flow and the core Server Load Balancing (SLB) configuration surface — virtual servers, real servers, service groups, and health monitors — which are the most commonly automated objects across ACOS deployments. ACOS 4.0.0 through ACOS 7.0.2 are supported.\n\n\nContact Support:\n Name: A10 Networks Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "provider": "a10-networks",
+  "sources": [
+    "a10-networks-authentication-api-openapi.yml",
+    "a10-networks-slb-health-monitor-api-openapi.yml",
+    "a10-networks-slb-server-api-openapi.yml",
+    "a10-networks-slb-service-group-api-openapi.yml",
+    "a10-networks-slb-virtual-server-api-openapi.yml"
+  ],
+  "outputs": [
+    "a10-networks-authentication-api-openapi.yml",
+    "a10-networks-slb-health-monitor-api-openapi.yml",
+    "a10-networks-slb-server-api-openapi.yml",
+    "a10-networks-slb-service-group-api-openapi.yml",
+    "a10-networks-slb-virtual-server-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "a10-networks-authentication-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "a10-networks-slb-health-monitor-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "a10-networks-slb-server-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "a10-networks-slb-service-group-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "a10-networks-slb-virtual-server-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": []
+}

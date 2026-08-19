@@ -1,0 +1,100 @@
+openapi: 3.2.0
+info:
+  title: A10 Networks ACOS aXAPI v3 Authentication API
+  description: 'The ACOS aXAPI is a RESTful HTTPS interface for configuring and operating A10 Networks Thunder Application Delivery Controllers and DDoS protection devices running ACOS (Application Centric Operating System). The aXAPI v3 surface is exhaustive (the Terraform provider exposes 3,627 resources): this profile captures the authentication flow and the core Server Load Balancing (SLB) configuration surface — virtual servers, real servers, service groups, and health monitors — which are the most commonly automated objects across ACOS deployments. ACOS 4.0.0 through ACOS 7.0.2 are supported.
+
+    '
+  version: '3.0'
+  contact:
+    name: A10 Networks Support
+    url: https://www.a10networks.com/support
+  license:
+    name: A10 Networks End User License Agreement
+    url: https://www.a10networks.com/company/legal/end-user-license-agreement/
+servers:
+- url: https://{thunder-host}
+  description: ACOS Thunder Appliance, vThunder VM, or vThunder Container (customer-hosted)
+  variables:
+    thunder-host:
+      default: thunder.example.com
+      description: Hostname or IP address of the ACOS device or vThunder instance.
+security:
+- A10Signature: []
+tags:
+- name: Authentication
+  description: Session sign-on and sign-off
+paths:
+  /axapi/v3/auth:
+    post:
+      summary: Sign On To ACOS
+      description: 'Authenticate with the ACOS device and receive a signature token. The returned signature must be sent in the `Authorization: A10 <signature>` header for every subsequent aXAPI request. Sessions expire after the device-configured idle timeout.
+
+        '
+      operationId: signOnToAcos
+      tags:
+      - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthRequest'
+      responses:
+        '200':
+          description: Authenticated; returned signature must be reused in the Authorization header.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '401':
+          description: Invalid credentials.
+  /axapi/v3/logoff:
+    post:
+      summary: Sign Off From ACOS
+      description: Terminate the authenticated session and invalidate the signature.
+      operationId: signOffFromAcos
+      tags:
+      - Authentication
+      responses:
+        '200':
+          description: Session terminated.
+components:
+  schemas:
+    AuthRequest:
+      type: object
+      required:
+      - credentials
+      properties:
+        credentials:
+          type: object
+          required:
+          - username
+          - password
+          properties:
+            username:
+              type: string
+              description: Local ACOS administrator username.
+            password:
+              type: string
+              format: password
+              description: Local ACOS administrator password.
+    AuthResponse:
+      type: object
+      properties:
+        authresponse:
+          type: object
+          properties:
+            signature:
+              type: string
+              description: 'Session signature; supply as `Authorization: A10 <signature>` on subsequent calls.'
+            description:
+              type: string
+  securitySchemes:
+    A10Signature:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Signature returned from POST /axapi/v3/auth, sent as `Authorization: A10 <signature>`.
+
+        '

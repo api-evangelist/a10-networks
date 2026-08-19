@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "A10 Networks ACOS aXAPI v3 SLB Server API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SLB Server",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Real Servers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{thunder-host}/axapi/v3/slb/server"
+          },
+          "docs": "List Real Servers"
+        },
+        {
+          "info": {
+            "name": "Create A Real Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{thunder-host}/axapi/v3/slb/server",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create A Real Server"
+        },
+        {
+          "info": {
+            "name": "Get A Real Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{thunder-host}/axapi/v3/slb/server/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get A Real Server"
+        },
+        {
+          "info": {
+            "name": "Update A Real Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{thunder-host}/axapi/v3/slb/server/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update A Real Server"
+        },
+        {
+          "info": {
+            "name": "Delete A Real Server",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{thunder-host}/axapi/v3/slb/server/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete A Real Server"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
