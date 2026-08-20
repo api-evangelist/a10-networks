@@ -59,6 +59,12 @@ apis:
   tags:
   - Kubernetes
   - CRD
+  - Cloud-Native
+  - Application Delivery
+  - Service Mesh
+  tags_raw:
+  - Kubernetes
+  - CRD
   - Cloud Native
   - Application Delivery
   - Service Mesh
