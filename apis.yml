@@ -18,6 +18,18 @@ description: >-
   reported record annual revenue of $290.6M in FY2025 (up 11.0% year over year) under CEO Dhrupad Trivedi, serving
   7,700+ customers across 117 countries.
 type: Index
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: false
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: unknown
