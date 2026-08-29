@@ -226,6 +226,9 @@ apis:
   - type: SpectralRuleset
     url: rules/a10-networks-rules.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/a10-networks-capability-edges.yml
+    name: A10 Networks Business Capability Map
   - type: DomainSecurity
     url: security/a10-networks-domain-security.yml
   - type: Website

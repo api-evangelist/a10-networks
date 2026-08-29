@@ -1,0 +1,45 @@
+slug: a10-networks
+provider: A10 Networks
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Telecommunications
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: SLB Health Monitor
+  spec_file: a10-networks-slb-health-monitor-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: GET /axapi/v3/health/monitor  listHealthMonitors  List Health Monitors — configuring A10 Thunder
+    Application Delivery Controllers
+  reason: Configuration of health monitors on load-balancing appliances is management of network infrastructure
+    devices; IT Infrastructure Management is the honest cross-industry fit for a devtool/appliance config
+    API rather than telecom network capabilities.
+- tag: SLB Server
+  spec_file: a10-networks-slb-server-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: POST /axapi/v3/slb/server  createServer  Create A Real Server — Server Load Balancing (SLB)
+    configuration surface
+  reason: CRUD over real servers in a load-balancer configuration is IT infrastructure (network/compute)
+    configuration, not an industry business capability.
+- tag: SLB Virtual Server
+  spec_file: a10-networks-slb-virtual-server-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: 'POST /axapi/v3/slb/virtual-server  createVirtualServer  Create A Virtual Server; schemas:
+    VirtualServer, VirtualPort'
+  reason: Virtual server / virtual port configuration on an ADC appliance is network infrastructure management.
