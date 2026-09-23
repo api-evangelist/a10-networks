@@ -1,9 +1,7 @@
 openapi: 3.2.0
 info:
   title: A10 Networks ACOS aXAPI v3 SLB Server API
-  description: 'The ACOS aXAPI is a RESTful HTTPS interface for configuring and operating A10 Networks Thunder Application Delivery Controllers and DDoS protection devices running ACOS (Application Centric Operating System). The aXAPI v3 surface is exhaustive (the Terraform provider exposes 3,627 resources): this profile captures the authentication flow and the core Server Load Balancing (SLB) configuration surface — virtual servers, real servers, service groups, and health monitors — which are the most commonly automated objects across ACOS deployments. ACOS 4.0.0 through ACOS 7.0.2 are supported.
-
-    '
+  description: The ACOS aXAPI is a RESTful HTTPS interface for configuring and operating A10 Networks Thunder Application Delivery Controllers and DDoS protection devices running ACOS (Application Centric Operating System).
   version: '3.0'
   contact:
     name: A10 Networks Support

@@ -1,9 +1,7 @@
 openapi: 3.2.0
 info:
   title: A10 Networks ACOS aXAPI v3 Authentication API
-  description: 'The ACOS aXAPI is a RESTful HTTPS interface for configuring and operating A10 Networks Thunder Application Delivery Controllers and DDoS protection devices running ACOS (Application Centric Operating System). The aXAPI v3 surface is exhaustive (the Terraform provider exposes 3,627 resources): this profile captures the authentication flow and the core Server Load Balancing (SLB) configuration surface — virtual servers, real servers, service groups, and health monitors — which are the most commonly automated objects across ACOS deployments. ACOS 4.0.0 through ACOS 7.0.2 are supported.
-
-    '
+  description: The ACOS aXAPI is a RESTful HTTPS interface for configuring and operating A10 Networks Thunder Application Delivery Controllers and DDoS protection devices running ACOS (Application Centric Operating System).
   version: '3.0'
   contact:
     name: A10 Networks Support
@@ -27,9 +25,7 @@ paths:
   /axapi/v3/auth:
     post:
       summary: Sign On To ACOS
-      description: 'Authenticate with the ACOS device and receive a signature token. The returned signature must be sent in the `Authorization: A10 <signature>` header for every subsequent aXAPI request. Sessions expire after the device-configured idle timeout.
-
-        '
+      description: 'Authenticate with the ACOS device and receive a signature token. The returned signature must be sent in the `Authorization: A10 ` header for every subsequent aXAPI request. Sessions expire after the device-configured idle timeout.'
       operationId: signOnToAcos
       tags:
       - Authentication
@@ -61,6 +57,17 @@ paths:
           description: Session terminated.
 components:
   schemas:
+    AuthResponse:
+      type: object
+      properties:
+        authresponse:
+          type: object
+          properties:
+            signature:
+              type: string
+              description: 'Session signature; supply as `Authorization: A10 <signature>` on subsequent calls.'
+            description:
+              type: string
     AuthRequest:
       type: object
       required:
@@ -79,17 +86,6 @@ components:
               type: string
               format: password
               description: Local ACOS administrator password.
-    AuthResponse:
-      type: object
-      properties:
-        authresponse:
-          type: object
-          properties:
-            signature:
-              type: string
-              description: 'Session signature; supply as `Authorization: A10 <signature>` on subsequent calls.'
-            description:
-              type: string
   securitySchemes:
     A10Signature:
       type: apiKey
