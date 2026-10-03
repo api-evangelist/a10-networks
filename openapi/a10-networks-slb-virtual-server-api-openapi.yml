@@ -108,37 +108,6 @@ paths:
           description: Virtual server deleted.
 components:
   schemas:
-    VirtualServer:
-      type: object
-      required:
-      - name
-      - ip-address
-      properties:
-        name:
-          type: string
-          description: Unique virtual server name.
-        ip-address:
-          type: string
-          format: ipv4
-          description: VIP address.
-        ipv6-address:
-          type: string
-          format: ipv6
-        netmask:
-          type: string
-        port-list:
-          type: array
-          items:
-            $ref: '#/components/schemas/VirtualPort'
-        enable-disable-action:
-          type: string
-          enum:
-          - enable
-          - disable
-          - disable-when-all-ports-down
-          - disable-when-any-port-down
-        ha-group:
-          type: integer
     VirtualPort:
       type: object
       required:
@@ -180,6 +149,37 @@ components:
           type: string
         template-persist-source-ip:
           type: string
+    VirtualServer:
+      type: object
+      required:
+      - name
+      - ip-address
+      properties:
+        name:
+          type: string
+          description: Unique virtual server name.
+        ip-address:
+          type: string
+          format: ipv4
+          description: VIP address.
+        ipv6-address:
+          type: string
+          format: ipv6
+        netmask:
+          type: string
+        port-list:
+          type: array
+          items:
+            $ref: '#/components/schemas/VirtualPort'
+        enable-disable-action:
+          type: string
+          enum:
+          - enable
+          - disable
+          - disable-when-all-ports-down
+          - disable-when-any-port-down
+        ha-group:
+          type: integer
   securitySchemes:
     A10Signature:
       type: apiKey
