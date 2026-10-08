@@ -130,3 +130,59 @@ plans:
         timeFrame: year
         price: contact-sales
         userMultiplied: false
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - subscription
+  units:
+  - object
+  plans:
+  - name: Thunder ADC — Physical Appliance
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - object
+    periods:
+    - year
+  - name: vThunder — Bring-Your-Own-License
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - other
+    periods:
+    - year
+  - name: A10 Capacity FlexPool
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - other
+    periods:
+    - year
+  - name: A10 Defend DDoS Mitigator
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - other
+    periods:
+    - year
+  - name: A10 Defend Threat Control (SaaS)
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - object
+    periods:
+    - year
+  - name: A10 AI Firewall
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - other
+    periods:
+    - year
