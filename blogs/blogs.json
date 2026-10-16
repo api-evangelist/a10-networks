@@ -2,18 +2,18 @@
   "repo": "a10-networks",
   "feeds": [
     {
-      "source": "https://documentation.a10networks.com/ACOS-Docs/axapi/608/index.html",
-      "feed_url": "https://documentation.a10networks.com/ACOS-Docs/axapi/608/index.html",
+      "source": "https://www.a10networks.com/blog/axapi-rest-based-application-programming-interface-integration/",
+      "feed_url": "https://www.a10networks.com/blog/axapi-rest-based-application-programming-interface-integration/feed/",
       "title": "",
       "saved": 0,
-      "method": "none"
+      "method": "discovered"
     },
     {
-      "source": "https://glm.a10networks.com",
-      "feed_url": "https://glm.a10networks.com",
+      "source": "https://www.a10networks.com/blog/",
+      "feed_url": "https://www.a10networks.com/blog/feed/",
       "title": "",
       "saved": 0,
-      "method": "none"
+      "method": "discovered"
     },
     {
       "source": "https://www.a10networks.com/blog/feed/",
@@ -30,6 +30,20 @@
       "method": "feed"
     },
     {
+      "source": "https://documentation.a10networks.com/ACOS-Docs/axapi/608/index.html",
+      "feed_url": "https://documentation.a10networks.com/ACOS-Docs/axapi/608/index.html",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
+      "source": "https://glm.a10networks.com",
+      "feed_url": "https://glm.a10networks.com",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
       "source": "https://www.a10networks.com/feed/",
       "feed_url": "https://www.a10networks.com/feed/",
       "title": "",
@@ -38,7 +52,7 @@
     }
   ],
   "post_count": 35,
-  "fetched": "2026-10-03T12:30:02Z",
+  "fetched": "2026-10-10T13:15:00Z",
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "path_blog",
   "feed_nature_note": "Whether these posts are the vendor publishing or its support community, decided on the URL path grammar of the saved posts -- not the hostname, which carries both on Khoros, and not author diversity, which flags large vendor blogs as forums. 'undetermined' means undetermined."
