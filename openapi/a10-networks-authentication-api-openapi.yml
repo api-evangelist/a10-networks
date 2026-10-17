@@ -57,6 +57,17 @@ paths:
           description: Session terminated.
 components:
   schemas:
+    AuthResponse:
+      type: object
+      properties:
+        authresponse:
+          type: object
+          properties:
+            signature:
+              type: string
+              description: 'Session signature; supply as `Authorization: A10 <signature>` on subsequent calls.'
+            description:
+              type: string
     AuthRequest:
       type: object
       required:
@@ -75,17 +86,6 @@ components:
               type: string
               format: password
               description: Local ACOS administrator password.
-    AuthResponse:
-      type: object
-      properties:
-        authresponse:
-          type: object
-          properties:
-            signature:
-              type: string
-              description: 'Session signature; supply as `Authorization: A10 <signature>` on subsequent calls.'
-            description:
-              type: string
   securitySchemes:
     A10Signature:
       type: apiKey
