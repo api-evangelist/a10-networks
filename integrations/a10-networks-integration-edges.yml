@@ -17,12 +17,12 @@ edges:
   apps:
   - A10 Lab - Application Delivery Control 5 (ADC)
   - A10 Lab - System Administration 5 (SYSADM)
-  - A10 Lab - TPS 5.0.2 with aGalaxy 5.0.9
   - A10 Lab - Application Delivery Control (ADC)
   - A10 Lab - System Administration (SYSADM)
+  - A10 Lab - Carrier Grade NAT (CGN)
   seller_name: A10 Networks
   detected_by: sweep-cloud-marketplaces.py
-  detected: '2026-10-13'
+  detected: '2026-10-19'
 - partner_name: Microsoft Azure Marketplace
   partner: microsoft-azure
   partner_match: aggregator
@@ -34,11 +34,11 @@ edges:
   evidence: https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=A10%20Networks
   listing_count: 10
   apps:
+  - A10 Thunder TPS VA for DDoS Protection
+  - A10 vThunder ADC 414GR1 - BYOL
   - A10 Thunder ADC for Advanced Load Balancing - BYOL
   - A10 Thunder ADC for Advanced Load Balancing - 100 Mbps
   - A10 Thunder ADC for Advanced Load Balancing - 5 Gbps
-  - A10 Thunder ADC for Advanced Load Balancing - 10 Gbps
-  - A10 Thunder ADC for Advanced Load Balancing - 20 Mbps
   seller_name: A10 Networks
   detected_by: sweep-cloud-marketplaces.py
-  detected: '2026-10-13'
+  detected: '2026-10-19'
