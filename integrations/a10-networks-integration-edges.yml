@@ -2,6 +2,7 @@ generated: '2026-10-13'
 method: searched
 checked:
 - https://azuremarketplace.microsoft.com/
+- terraform/integrations/terraform-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: Microsoft Azure Marketplace
@@ -42,3 +43,25 @@ edges:
   seller_name: A10 Networks
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-19'
+- partner_name: Terraform (terraform-registry)
+  partner: terraform
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: terraform-registry
+  evidence: https://registry.terraform.io/providers/a10networks/thunder
+  mirror_of: terraform/integrations/terraform-integration-edges.yml
+  apps:
+  - a10networks/thunder
+  - a10networks/vthunder
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: infrastructure-as-code provider registry listing
+  badges:
+  - Verified publisher (Terraform partner tier)
+source:
+- terraform/integrations/terraform-integration-edges.yml
