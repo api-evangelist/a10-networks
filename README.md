@@ -1,4 +1,4 @@
-# A10 Networks (a10-networks)
+# A10 Networks
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,117 +66,157 @@
 
 A10 Networks (NYSE: ATEN) is a San Jose, California–headquartered application delivery and cybersecurity company founded in 2004 by Lee Chen. A10 builds the ACOS (Application Centric Operating System) software platform that powers its Thunder family of physical appliances, virtual machines (vThunder), and containerized form factors across hyperscalers and private clouds. The product line spans the Thunder ADC (Application Delivery Controller for L4–L7 server load balancing and GSLB), the Thunder TPS / A10 Defend portfolio (DDoS detection, mitigation, orchestration, and Threat Control SaaS) protecting service-provider and enterprise networks from volumetric and application-layer attacks, Thunder CGN (Carrier-Grade NAT and IPv4/IPv6 transition), Thunder CFW (consolidated firewall, VPN, CGN, and secure web gateway), SSL Insight for encrypted traffic decryption, the A10 Defend Next-Gen WAF (incorporating ThreatX), and the A10 AI Firewall for protecting LLM and AI application traffic. Every ACOS device exposes the aXAPI v3 — a RESTful HTTPS interface that is the primary configuration and operational control plane for the platform, supporting ACOS 4.0.0 through 7.0.2. The aXAPI surface is exhaustive (the official Terraform provider exposes 3,627 resources) and is wrapped by official Ansible collections (a10-acos-axapi, a10-acos-cli), a Python client (acos-client), the Thunder Kubernetes Connector (TKC, with 24 CRDs for pod-driven VIP automation), and integrations for OpenStack Octavia, Neutron LBaaS, AWS CloudFormation, Azure ARM, VMware vSphere, Helm, and Prometheus. A10 reported record annual revenue of $290.6M in FY2025 (up 11.0% year over year) under CEO Dhrupad Trivedi, serving 7,700+ customers across 117 countries.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/a10-networks/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/a10-networks/refs/heads/main/apis.yml)
+**Areas:** Application Delivery · Load Balancing · DDoS Protection · Application Delivery Controller · Network Security · Web Application Firewall · SSL Decryption · CGNAT · Cybersecurity · Infrastructure · Kubernetes · Terraform
 
-## Scope
+## A10 Networks on APIs.io
 
-- **Type:** Index
-- **Position:** Provider
-- **Access:** 3rd-Party
+Everything profiled for A10 Networks is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/a10-networks/](https://apis.io/providers/a10-networks/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (6)
 
-- Application Delivery
-- Load Balancing
-- DDoS Protection
-- Application Delivery Controller
-- Network Security
-- Web Application Firewall
-- SSL Decryption
-- CGNAT
-- Cybersecurity
-- Infrastructure
-- Kubernetes
-- Terraform
-- Ansible
-- REST API
-- Networking
+- [A10 Thunder Kubernetes Connector (TKC)](https://apis.io/apis/a10-networks/thunder-kubernetes-connector/) — The Thunder Kubernetes Connector (TKC) runs inside Kubernetes and configures upstream Thunder ADC objects automatically as pods are created and scaled. It…
+- [A10 Networks Authentication API](https://apis.io/apis/a10-networks/a10-networks-authentication-api/) — Session sign-on and sign-off
+- [A10 Networks SLB Health Monitor API](https://apis.io/apis/a10-networks/a10-networks-slb-health-monitor-api/) — Active health probes attached to servers and service groups
+- [A10 Networks SLB Server API](https://apis.io/apis/a10-networks/a10-networks-slb-server-api/) — Real backend servers
+- [A10 Networks SLB Service Group API](https://apis.io/apis/a10-networks/a10-networks-slb-service-group-api/) — Service groups (pools) that bind real servers to a load-balancing method
+- [A10 Networks SLB Virtual Server API](https://apis.io/apis/a10-networks/a10-networks-slb-virtual-server-api/) — Virtual servers (VIPs) that front pools of real servers
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-25
-- **Modified:** 2026-05-25
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### JSON Schema (3)
 
-### A10 Networks ACOS aXAPI v3
+The data models the API reads and writes.
 
-The ACOS aXAPI v3 is the RESTful HTTPS configuration and operational control plane for every A10 Thunder device — physical, virtual (vThunder), or containerized. It covers the full ACOS object model: Server Load Balancing (virtual servers, real servers, service groups, health monitors, SSL templates, aFleX scripts), GSLB, DDoS protection objects, CGNAT pools, system configuration, networking, routing, partitions, and operational/statistics resources. Authentication is session-based (POST /axapi/v3/auth returns a signature for the `Authorization: A10 <signature>` header). The aXAPI is the substrate under the Terraform provider, the Ansible collections, the Kubernetes Connector, and the Python acos-client.
+- [A10 ACOS Real Server](https://apis.io/schemas/a10-networks/a10-networks-server/)
+- [A10 ACOS SLB Service Group](https://apis.io/schemas/a10-networks/a10-networks-service-group/)
+- [A10 ACOS Virtual Server](https://apis.io/schemas/a10-networks/a10-networks-virtual-server/)
 
-- **Human URL:** [https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html](https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html)
+#### JSON Structure (1)
 
-#### Tags
+Data models expressed in JSON Structure.
 
-- Application Delivery
-- Load Balancing
-- DDoS Protection
-- SLB
-- REST API
-- ACOS
+- [A10 Networks Virtual Server Structure](https://apis.io/json-structure/a10-networks/a10-networks-virtual-server-structure/)
 
-#### Properties
+#### JSON-LD (1)
 
-- [Documentation](https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html)
-- [Documentation](https://documentation.a10networks.com/ACOS-Docs/axapi/608/index.html)
-- [Blog](https://www.a10networks.com/blog/axapi-rest-based-application-programming-interface-integration/)
-- [OpenAPI](openapi/a10-networks-axapi-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](json-schema/a10-networks-virtual-server-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/a10-networks-server-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/a10-networks-service-group-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/a10-networks-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Spectral Ruleset](rules/a10-networks-rules.yml)
+Linked-data contexts for the provider's vocabulary.
 
-### A10 Thunder Kubernetes Connector (TKC)
+- [A10 Networks Context](https://apis.io/jsonld/a10-networks/a10-networks-context/)
 
-The Thunder Kubernetes Connector (TKC) runs inside Kubernetes and configures upstream Thunder ADC objects automatically as pods are created and scaled. It defines 24 CRDs covering VirtualServer, VirtualPort, ServiceGroup, HealthMonitor, NatPool, A10IPPool, ActiveActiveHADevice, ClientSsl/ServerSsl templates, TCP/UDP/HTTP/ HTTPS templates, persistence templates, policy templates, and cipher templates — exposing the full L4–L7 ADC surface as native Kubernetes resources.
+#### Vocabulary (1)
 
-- **Human URL:** [https://github.com/a10networks/tkc-doc](https://github.com/a10networks/tkc-doc)
+The provider's domain terms, defined.
 
-#### Tags
+- [A10 Networks Vocabulary](https://apis.io/vocabularies/a10-networks/a10-networks-vocabulary/)
 
-- Kubernetes
-- CRD
-- Cloud Native
-- Application Delivery
-- Service Mesh
+#### Examples (2)
 
-#### Properties
+Example requests and responses.
 
-- [Documentation](https://github.com/a10networks/tkc-doc)
-- [Source Code](https://github.com/a10networks/tkc-doc)
-- [Kubernetes C R D](crd/)
+- [A10 Networks Auth Example](https://apis.io/examples/a10-networks/a10-networks-auth-example/)
+- [A10 Networks Create Virtual Server Example](https://apis.io/examples/a10-networks/a10-networks-create-virtual-server-example/)
 
-## Common Properties
+#### Collections (5)
+
+Postman and Open Collection request collections.
+
+- [A10 Networks ACOS aXAPI v3 Authentication API](https://apis.io/collections/a10-networks/open-a10-networks-authentication-api/)
+- [A10 Networks ACOS aXAPI v3 SLB Health Monitor API](https://apis.io/collections/a10-networks/open-a10-networks-slb-health-monitor-api/)
+- [A10 Networks ACOS aXAPI v3 SLB Server API](https://apis.io/collections/a10-networks/open-a10-networks-slb-server-api/)
+- [A10 Networks ACOS aXAPI v3 SLB Service Group API](https://apis.io/collections/a10-networks/open-a10-networks-slb-service-group-api/)
+- [A10 Networks ACOS aXAPI v3 SLB Virtual Server API](https://apis.io/collections/a10-networks/open-a10-networks-slb-virtual-server-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [A10 Networks — jsonschema rules](https://apis.io/rules/a10-networks/a10-networks-jsonschema-spectral-rules/)
+- [A10 Networks API Rules](https://apis.io/rules/a10-networks/a10-networks-rules/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [A10 Networks Domain Security](https://apis.io/security/a10-networks/a10-networks-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [A10 Networks Plans Pricing](https://apis.io/plans/a10-networks/a10-networks-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [A10 Networks Rate Limits](https://apis.io/rate-limits/a10-networks/a10-networks-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [A10 Networks Finops](https://apis.io/finops/a10-networks/a10-networks-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.a10networks.com)
-- [Products](https://www.a10networks.com/products/)
 - [Documentation](https://documentation.a10networks.com)
-- [a X A P I  Documentation](https://documentation.a10networks.com/ACOS-Docs/axapi/702/start_here.html)
-- [Source Code](https://github.com/a10networks)
-- [Terraform Provider](https://github.com/a10networks/terraform-provider-thunder)
-- [Ansible Collection](https://github.com/a10networks/a10-acos-axapi)
-- [Python Client](https://github.com/a10networks/acos-client)
-- [Kubernetes Connector](https://github.com/a10networks/tkc-doc)
-- [Open Stack Octavia](https://github.com/a10networks/a10-octavia)
-- [Prometheus Exporter](https://github.com/a10networks/PrometheusExporter)
-- [A W S Cloud Formation](https://github.com/a10networks/AWS-CFT)
-- [Azure A R M Templates](https://github.com/a10networks/A10-azure-arm-templates)
-- [V Mware Templates](https://github.com/a10networks/a10-vmware-templates)
-- [a Fle X Scripts](https://github.com/a10networks/aflex-collection)
-- [Helm Chart](https://github.com/a10networks/acos-prometheus-exporter-helm-chart)
 - [Support](https://support.a10networks.com)
-- [Community](https://glm.a10networks.com)
 - [Blog](https://www.a10networks.com/blog/)
-- [Newsroom](https://www.a10networks.com/news/)
-- [Investor Relations](https://investors.a10networks.com)
-- [Careers](https://www.a10networks.com/company/careers/)
-- [Contact](https://www.a10networks.com/contact-us/)
-- [Twitter](https://twitter.com/A10Networks)
-- [LinkedIn](https://www.linkedin.com/company/a10networks)
-- [YouTube](https://www.youtube.com/user/a10networks)
-- [Git Hub](https://github.com/a10networks)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 27.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 58.0 |
+| Contract quality | 56.4 |
+| Contract governance | 13.6 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 16.7 |
+| Access clarity | 15.8 |
+
+**Agent readiness 16.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/a10-networks/](https://apis.io/providers/a10-networks/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for A10 Networks: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/a10-networks/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
