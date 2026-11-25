@@ -170,18 +170,18 @@ Links to the company's own pages. This repository publishes no copy of their spe
 
 ## API Evangelist rating
 
-**Kin Score 27.4** — thin · rubric 0.24.0 · scored 2026-10-17
+**Kin Score 26.6** — thin · rubric 0.28.1 · scored 2026-11-21
 
 | Facet | Score |
 |---|---|
-| Discoverability | 58.0 |
+| Discoverability | 66.1 |
 | Contract quality | 56.4 |
 | Contract governance | 13.6 |
-| Operational transparency | 5.3 |
+| Operational transparency | 4.8 |
 | Developer ergonomics | 16.7 |
-| Access clarity | 15.8 |
+| Access clarity | 12.8 |
 
-**Agent readiness 16.1** — agent-aware
+**Agent readiness 17.5** — agent-aware
 
 | Agent-readiness dimension | Result |
 |---|---|
@@ -204,8 +204,14 @@ Links to the company's own pages. This repository publishes no copy of their spe
 | Protected Resource Metadata | — |
 | Dynamic Client Registration | — |
 | Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+| MCP Tool Quality | na |
+| Onboarding Descriptor | — |
+| Dns Aid Index | na |
+| Markdown Negotiation | na |
 
-**Regulatory alignment 10.8** — Horizontal (data, software, accessibility, platform)
+**Regulatory alignment 4.9** — Horizontal (data, software, accessibility, platform)
 
 The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/a10-networks/](https://apis.io/providers/a10-networks/).
 
